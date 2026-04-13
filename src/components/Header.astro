@@ -1,0 +1,104 @@
+---
+import {Image} from 'astro:assets';
+import logoSymbol from '../assets/logorytm-logo.png';
+
+const navItems = [
+    {name: 'Strona główna', href: '/'},
+    {name: 'O mnie', href: '/about'},
+    {name: 'Oferta', href: '/services'},
+    {name: 'Cennik', href: '/pricing'},
+    {name: 'Kontakt', href: '/contact'},
+];
+---
+
+<header class="w-full relative z-50 bg-white/60 backdrop-blur-xl border-b border-[#884A39]/10 shadow-[0_10px_40px_rgba(0,0,0,0.05)] transition-all">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between relative z-20">
+
+        <div class="flex items-center gap-3">
+            <a href="/" class="group flex items-center gap-3 shrink-0">
+                <Image
+                        src={logoSymbol}
+                        alt="LOGORYTM Symbol"
+                        width={200}
+                        quality="max"
+                        class="w-auto h-14 md:h-18 group-hover:scale-105 transition-transform duration-300"
+                />
+                <div class="flex flex-col items-center text-center">
+                    <span class="font-heading font-extrabold text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#884A39] to-[#C38154] tracking-tight">LOGORYTM</span>
+                    <span class="font-medium text-xs text-[#884A39]/90 mt-1 text-nowrap">LOGOPEDIA I TERAPIA MOWY</span>
+                    <span class="font-medium text-xs text-[#884A39]/90">JOANNA JACHOWICZ</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-8">
+            {navItems.map(item => (
+                    <a href={item.href}
+                       class="relative text-base font-semibold text-[#884A39] hover:text-[#C38154] transition-colors group py-1">
+                        {item.name}
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#C38154] transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+            ))}
+        </nav>
+
+        <button id="mobile-menu-btn"
+                class="md:hidden text-[#884A39] p-1 hover:text-[#C38154] transition-all duration-300 relative z-30">
+            <svg id="menu-icon" class="w-8 h-8 transition-transform duration-500 ease-out" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+                <path id="menu-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 6h16M4 12h16m-7 6h7"/>
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-menu-wrapper"
+         class="grid grid-rows-[0fr] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden">
+        <nav class="overflow-hidden">
+            <div id="mobile-menu-content"
+                 class="flex flex-col items-center pt-6 pb-12 gap-8 opacity-0 transition-opacity duration-300">
+                {navItems.map(item => (
+                        <a href={item.href}
+                           class="text-2xl font-bold text-[#884A39] hover:text-[#C38154] transition-all hover:scale-110">
+                            {item.name}
+                        </a>
+                ))}
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const wrapper = document.getElementById('mobile-menu-wrapper');
+        const content = document.getElementById('mobile-menu-content');
+        const menuPath = document.getElementById('menu-path');
+        const menuIcon = document.getElementById('menu-icon');
+
+        let isOpen = false;
+
+        btn?.addEventListener('click', () => {
+            isOpen = !isOpen;
+
+            if (isOpen) {
+                wrapper?.classList.replace('grid-rows-[0fr]', 'grid-rows-[1fr]');
+
+                setTimeout(() => {
+                    content?.classList.replace('opacity-0', 'opacity-100');
+                }, 150);
+
+                menuPath?.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+                menuIcon?.classList.add('rotate-180');
+            } else {
+                content?.classList.replace('opacity-100', 'opacity-0');
+
+                setTimeout(() => {
+                    wrapper?.classList.replace('grid-rows-[1fr]', 'grid-rows-[0fr]');
+                }, 150);
+
+                menuPath?.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+                menuIcon?.classList.remove('rotate-180');
+            }
+        });
+    });
+</script>

@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    title: string;
+}
+
+const {title} = Astro.props;
+---
+
+<html lang="pl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy."/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/png" href="/src/assets/logorytm-logo.png"/>
+    <meta name="generator" content={Astro.generator}/>
+    <title>{title} | Logorytm Gabinet Logopedyczny</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
+
+<div class="fixed inset-0 z-[-1] overflow-hidden bg-[#FDFBF7] pointer-events-none">
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C38154]/20 blur-[120px] mix-blend-multiply animate-blob"></div>
+    <div class="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-[#FFC26F]/20 blur-[100px] mix-blend-multiply animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-[-20%] left-[10%] w-[60vw] h-[60vw] rounded-full bg-[#884A39]/15 blur-[130px] mix-blend-multiply animate-blob animation-delay-4000"></div>
+</div>
+
+<div class="sticky top-0 z-50">
+    <Header/>
+</div>
+
+<main class="relative z-10">
+    <slot/>
+</main>
+
+<Footer/>
+
+<div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-t border-[#884A39]/10 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] transform translate-y-full transition-transform duration-500 flex flex-col sm:flex-row items-center justify-between p-4 sm:px-8 sm:py-4 gap-4">
+    <p class="text-sm text-[#884A39]/80 font-medium text-center sm:text-left leading-relaxed">
+        Ta strona korzysta z ciasteczek (cookies) m.in. w celu prawidłowego wyświetlania Map Google oraz fontów. Dalsze korzystanie ze strony oznacza zgodę na ich użycie. Szczegóły znajdziesz w <a href="/privacy" class="font-bold text-[#C38154] hover:text-[#884A39] transition-colors underline decoration-1 underline-offset-2">Polityce Prywatności</a>.
+    </p>
+    <button id="accept-cookies" class="shrink-0 bg-[#C38154] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#884A39] transition-all shadow-md hover:-translate-y-0.5">
+        Rozumiem
+    </button>
+</div>
+
+</body>
+</html>
+
+<style is:global>
+    .animate-blob {
+        animation: blob 15s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+
+    @keyframes blob {
+        0% {
+            transform: translate(0px, 0px) scale(1);
+        }
+        33% {
+            transform: translate(50px, -50px) scale(1.1);
+        }
+        66% {
+            transform: translate(-40px, 40px) scale(0.9);
+        }
+        100% {
+            transform: translate(0px, 0px) scale(1);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptButton = document.getElementById('accept-cookies');
+
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookieBanner?.classList.remove('translate-y-full');
+            }, 500);
+        }
+
+        acceptButton?.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner?.classList.add('translate-y-full');
+        });
+    });
+</script>

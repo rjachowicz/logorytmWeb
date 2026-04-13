@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+    html, body {
+        font-family: var(--font-sans), serif;
+        @apply antialiased text-[#183848];
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading), serif;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply px-10 py-4 rounded-full text-lg font-bold text-white bg-[#C38154] hover:bg-[#884A39] transition-all duration-300 shadow-xl hover:-translate-y-1;
+    }
+
+    .btn-secondary {
+        @apply px-10 py-4 rounded-full text-lg font-bold text-[#884A39] bg-white border border-white/50 hover:border-[#884A39] transition-colors shadow-sm;
+    }
+
+    .section-title {
+        @apply font-heading font-extrabold text-4xl md:text-5xl text-[#884A39] leading-tight;
+    }
+
+    .section-subtitle {
+        @apply text-[#C38154] font-bold tracking-widest uppercase text-sm mb-3 block;
+    }
+
+    .glass-panel {
+        @apply bg-white/60 backdrop-blur-2xl rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/60;
+    }
+}

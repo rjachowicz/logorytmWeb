@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+    {
+        title: 'Diagnoza logopedyczna',
+        subtitle: 'Szczegółowa ocena i rozpoznanie',
+        description: 'Kompleksowe badanie narządów mowy, ocena artykulacji, oddychania oraz połykania. Podstawa do stworzenia indywidualnego i skutecznego planu terapii logopedycznej.',
+        image: '/images/img4.png',
+        color: '#C38154',
+        reverse: false
+    },
+    {
+        title: 'Konsultacje logopedyczne',
+        subtitle: 'Profesjonalne wsparcie i porady',
+        description: 'Spotkania, podczas których omawiamy niepokojące objawy, analizujemy postępy i dobieramy odpowiednie ćwiczenia wspierające rozwój mowy do pracy w domu.',
+        image: '/images/img5.png',
+        color: '#FFC26F',
+        reverse: true
+    },
+    {
+        title: 'Terapia logopedyczna',
+        subtitle: 'Indywidualne zajęcia usprawniające',
+        description: 'Regularna praca nad korygowaniem wad wymowy i innych zaburzeń komunikacyjnych. Zajęcia prowadzone są w bezstresowej atmosferze, sprzyjającej przyswajaniu nowych umiejętności.',
+        image: '/images/img6.png',
+        color: '#884A39',
+        reverse: false
+    },
+    {
+        title: 'Nauka czytania',
+        subtitle: 'Płynne czytanie i zrozumienie tekstu',
+        description: 'Wsparcie w nabywaniu umiejętności czytania ze zrozumieniem. Wykorzystujemy nowoczesne metody wspomagające rozwój percepcji słuchowej i wzrokowej u dzieci.',
+        image: '/images/img8.jpg',
+        color: '#C38154',
+        reverse: true
+    },
+    {
+        title: 'Elektrostymulacja',
+        subtitle: 'Innowacyjne wsparcie terapii',
+        description: 'Bezpieczny zabieg fizykalny wspomagający leczenie zaburzeń logopedycznych. Wykorzystuje impulsy elektryczne do pobudzenia lub rozluźnienia mięśni aparatu artykulacyjnego.',
+        image: '/images/img9.jpg',
+        color: '#FFC26F',
+        reverse: false
+    }
+];
+---
+
+<Layout title="Oferta">
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal-up">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-white/40 backdrop-blur-md border border-[#C38154]/30 text-[#884A39] font-bold tracking-widest uppercase text-xs mb-6 shadow-sm">
+                Kompleksowa opieka
+            </span>
+            <h1 class="font-heading font-extrabold text-5xl md:text-6xl text-[#884A39] leading-tight mb-8">
+                Jak mogę <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C38154] to-[#FFC26F]">Ci pomóc?</span>
+            </h1>
+            <p class="text-lg md:text-xl text-[#884A39]/80 leading-relaxed max-w-2xl mx-auto">
+                Poznaj pełen zakres usług gabinetu Logorytm. Oferuję profesjonalną diagnozę i terapię opartą na
+                nowoczesnych, sprawdzonych metodach leczenia.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 space-y-24 md:space-y-32">
+            {services.map((service, index) => (
+                    <div class={`flex flex-col ${service.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-20`}>
+
+                        <div class={`w-full lg:w-1/2 ${service.reverse ? 'reveal-right' : 'reveal-left'}`}>
+                            <div class="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border border-white/50 group">
+                                <div class="absolute inset-0 bg-white/20 backdrop-blur-sm z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                                <img src={service.image} alt={service.title}
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+
+                                <div class="absolute inset-0 bg-gradient-to-tr from-[#884A39]/20 via-transparent to-transparent z-0"></div>
+                            </div>
+                        </div>
+
+                        <div class={`w-full lg:w-1/2 ${service.reverse ? 'reveal-left' : 'reveal-right'}`}>
+                            <div class="bg-white/40 backdrop-blur-2xl p-8 md:p-12 rounded-[2.5rem] border border-white/50 shadow-lg relative overflow-hidden">
+                                <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-40"
+                                     style={`background-color: ${service.color}`}></div>
+
+                                <div class="relative z-10">
+                                    <h3 class="font-heading font-extrabold text-3xl md:text-4xl text-[#884A39] mb-2">{service.title}</h3>
+                                    <p class="text-[#C38154] font-bold tracking-wide uppercase text-sm mb-6">{service.subtitle}</p>
+
+                                    <div class="w-12 h-1 rounded-full mb-8"
+                                         style={`background-color: ${service.color}`}></div>
+
+                                    <p class="text-[#884A39]/80 leading-relaxed text-lg mb-8">
+                                        {service.description}
+                                    </p>
+
+                                    <a href="/contact"
+                                       class="inline-flex items-center gap-2 font-bold text-[#884A39] hover:text-[#C38154] transition-colors group">
+                                        Zapytaj o terapię
+                                        <span class="w-8 h-8 rounded-full bg-white/80 shadow-sm flex items-center justify-center group-hover:bg-[#C38154] group-hover:text-white transition-all">
+                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path
+                                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                    </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            ))}
+        </div>
+    </section>
+
+    <section class="py-24 mt-16 bg-white/30 backdrop-blur-lg border-t border-b border-white/50 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-center reveal-up">
+            <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-[#884A39] mb-12">Innowacyjne techniki terapeutyczne</h2>
+
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
+                    <p class="font-bold text-[#884A39] text-lg">Masaż i Terapia Manualna</p>
+                    <p class="text-sm text-[#884A39]/70 mt-2">Holistyczne podejście integrujące techniki osteopatyczne i fizjoterapeutyczne w celu normalizacji napięcia mięśniowego.</p>
+                </div>
+
+                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
+                    <p class="font-bold text-[#884A39] text-lg">Elektrostymulacja z Treningiem</p>
+                    <p class="text-sm text-[#884A39]/70 mt-2">Innowacyjne połączenie prądów TENS/EMS z aktywnym treningiem miofunkcjonalnym dla optymalnych efektów.</p>
+                </div>
+
+                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
+                    <p class="font-bold text-[#884A39] text-lg">Kinesiotejping Logopedyczny</p>
+                    <p class="text-sm text-[#884A39]/70 mt-2">Wykorzystanie plastrów dynamicznych wspierających domykanie warg oraz prawidłową pracę mięśni twarzy i szyi.</p>
+                </div>
+
+                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
+                    <p class="font-bold text-[#884A39] text-lg">Metody SMURF i FTM</p>
+                    <p class="text-sm text-[#884A39]/70 mt-2">Nowoczesne strategie w diagnostyce i terapii wad wymowy, skupione na funkcjonalnym rozwoju kompetencji językowych.</p>
+                </div>
+
+                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
+                    <p class="font-bold text-[#884A39] text-lg">Miogopedia</p>
+                    <p class="text-sm text-[#884A39]/70 mt-2">Praktyczna terapia miofunkcjonalna nakierowana na korygowanie nieprawidłowej pozycji spoczynkowej języka i połykania.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative overflow-hidden z-10">
+        <div class="max-w-5xl mx-auto px-6 reveal-up">
+            <div class="bg-white/60 backdrop-blur-2xl rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/60">
+
+                <div class="relative z-10">
+                    <h3 class="font-heading font-extrabold text-4xl md:text-5xl text-[#884A39] mb-6 leading-tight">
+                        Gotowy na pierwszą wizytę?
+                    </h3>
+                    <p class="text-xl text-[#884A39]/70 mb-12 max-w-2xl mx-auto">
+                        Skontaktuj się ze mną telefonicznie lub mailowo, aby ustalić dogodny termin pierwszej
+                        konsultacji.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/pricing"
+                           class="bg-[#C38154] text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-[#884A39] transition-all duration-300 shadow-xl hover:-translate-y-1">
+                            Zobacz cennik usług
+                        </a>
+                        <a href="/contact"
+                           class="px-10 py-4 rounded-full text-lg font-bold text-[#884A39] bg-white border border-[#884A39]/10 hover:border-[#884A39] transition-colors shadow-sm">
+                            Skontaktuj się ze mną
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style is:global>
+    .reveal-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-up.active, .reveal-left.active, .reveal-right.active {
+        opacity: 1;
+        transform: translate(0);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>

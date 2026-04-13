@@ -1,0 +1,214 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pricingItems = [
+    {
+        title: 'Diagnoza logopedyczna',
+        time: '50-60 min',
+        price: '150 zł',
+        description: 'Pierwsza wizyta obejmująca szczegółowy wywiad, badanie narządów mowy oraz ustalenie indywidualnego planu terapii.',
+        color: '#C38154'
+    },
+    {
+        title: 'Diagnoza + pisemna opinia',
+        time: '50-60 min',
+        price: '180 zł',
+        description: 'Kompleksowa diagnoza logopedyczna połączona z przygotowaniem i wydaniem szczegółowej opinii w formie pisemnej.',
+        color: '#884A39'
+    },
+    {
+        title: 'Zajęcia logopedyczne - pełna sesja',
+        time: '45 min',
+        price: '120 zł',
+        description: 'Regularna wizyta terapeutyczna dla dzieci, dostosowana do postępów i potrzeb pacjenta.',
+        color: '#FFC26F'
+    },
+    {
+        title: 'Zajęcia logopedyczne - krótka sesja',
+        time: '30 min',
+        price: '100 zł',
+        description: 'Krótsza sesja terapeutyczna, dostosowana do możliwości skupienia najmłodszych pacjentów.',
+        color: '#C38154'
+    },
+    {
+        title: 'Elektrostymulacja',
+        time: 'do 30 min',
+        price: '60 zł',
+        description: 'Zabieg elektrostymulacji bez terapii logopedycznej. Dokładny czas trwania sesji jest uzależniony od stymulowanych obszarów.',
+        color: '#884A39'
+    },
+    {
+        title: 'Zaświadczenie na studia',
+        time: '-',
+        price: '100 zł',
+        description: 'Badanie i wydanie oficjalnego zaświadczenia o braku przeciwwskazań do podjęcia wybranych kierunków studiów.',
+        color: '#FFC26F'
+    }
+];
+---
+
+<Layout title="Cennik">
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal-up">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-white/40 backdrop-blur-md border border-[#C38154]/30 text-[#884A39] font-bold tracking-widest uppercase text-xs mb-6 shadow-sm">
+                Inwestycja w zdrowie
+            </span>
+            <h1 class="font-heading font-extrabold text-5xl md:text-6xl text-[#884A39] leading-tight mb-8">
+                Jasne zasady, <br class="hidden md:block"/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C38154] to-[#FFC26F]">przejrzyste ceny.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-[#884A39]/80 leading-relaxed max-w-2xl mx-auto">
+                Poznaj koszty usług w gabinecie Logorytm. Jeśli masz pytania dotyczące zakresu terapii, chętnie odpowiem
+                na nie telefonicznie.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12 relative z-10">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-8">
+                {pricingItems.map((item, index) => (
+                        <div class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-[2.5rem] border border-white shadow-lg reveal-up relative overflow-hidden group"
+                             style={`transition-delay: ${index * 100}ms`}>
+                            <div class="absolute -right-12 -top-12 w-36 h-36 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-700"
+                                 style={`background-color: ${item.color}`}></div>
+
+                            <div class="relative z-10 flex flex-col h-full">
+                                <div class="flex justify-between items-start mb-6 gap-4">
+                                    <div>
+                                        <h3 class="font-heading font-bold text-2xl text-[#884A39] mb-3">{item.title}</h3>
+                                        <div class="inline-flex items-center gap-2 bg-white/80 rounded-full px-3 py-1 text-xs font-bold text-[#884A39]/70 border border-[#884A39]/5 shadow-sm">
+                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            {item.time}
+                                        </div>
+                                    </div>
+                                    <div class="text-right shrink-0">
+                                        <span class="block font-heading font-extrabold text-3xl md:text-4xl"
+                                              style={`color: ${item.color}`}>{item.price}</span>
+                                    </div>
+                                </div>
+                                <p class="text-[#884A39]/80 leading-relaxed mt-auto">
+                                    {item.description}
+                                </p>
+                            </div>
+                        </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 reveal-up">
+            <div class="bg-white/40 backdrop-blur-2xl rounded-[3rem] p-10 md:p-16 shadow-xl border border-white/50">
+                <div class="text-center mb-12">
+                    <span class="text-[#C38154] font-bold tracking-widest uppercase text-sm mb-3 block">Regulamin i płatności</span>
+                    <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-[#884A39]">Ważne informacje</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#C38154]/10 flex items-center justify-center text-[#C38154]">
+                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-[#884A39] text-lg mb-2">Metody płatności</h3>
+                            <p class="text-[#884A39]/70 text-sm leading-relaxed">Za wizytę w gabinecie zapłacisz w
+                                najwygodniejszy dla siebie sposób: gotówką lub za pomocą
+                                płatności BLIK na telefon.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#FFC26F]/10 flex items-center justify-center text-[#FFC26F]">
+                            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-[#884A39] text-lg mb-2">Odwoływanie wizyt</h3>
+                            <p class="text-[#884A39]/70 text-sm leading-relaxed">Bardzo proszę o informowanie o
+                                nieobecności z co najmniej 24-godzinnym wyprzedzeniem. Pozwoli to zaoferować termin
+                                innym oczekującym pacjentom.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative overflow-hidden z-10">
+        <div class="max-w-5xl mx-auto px-6 reveal-up">
+            <div class="bg-white/60 backdrop-blur-2xl rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/60">
+                <div class="relative z-10">
+                    <h3 class="font-heading font-extrabold text-4xl md:text-5xl text-[#884A39] mb-6 leading-tight">
+                        Chcesz umówić się <br/> na wizytę?
+                    </h3>
+                    <p class="text-xl text-[#884A39]/70 mb-12 max-w-2xl mx-auto">
+                        Zadzwoń do mnie bezpośrednio, aby ustalić dogodny
+                        termin spotkania.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/contact"
+                           class="bg-[#C38154] text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-[#884A39] transition-all duration-300 shadow-xl hover:-translate-y-1">
+                            Skontaktuj się ze mną
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style is:global>
+    .reveal-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-up.active, .reveal-left.active, .reveal-right.active {
+        opacity: 1;
+        transform: translate(0);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
