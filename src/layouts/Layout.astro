@@ -24,7 +24,8 @@ const {title} = Astro.props;
           rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
 </head>
 <body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
 
@@ -44,13 +45,35 @@ const {title} = Astro.props;
 
 <Footer/>
 
-<div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-t border-[#884A39]/10 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] transform translate-y-full transition-transform duration-500 flex flex-col sm:flex-row items-center justify-between p-4 sm:px-8 sm:py-4 gap-4">
-    <p class="text-sm text-[#884A39]/80 font-medium text-center sm:text-left leading-relaxed">
-        Ta strona korzysta z ciasteczek (cookies) m.in. w celu prawidłowego wyświetlania Map Google oraz fontów. Dalsze korzystanie ze strony oznacza zgodę na ich użycie. Szczegóły znajdziesz w <a href="/privacy" class="font-bold text-[#C38154] hover:text-[#884A39] transition-colors underline decoration-1 underline-offset-2">Polityce Prywatności</a>.
-    </p>
-    <button id="accept-cookies" class="shrink-0 bg-[#C38154] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#884A39] transition-all shadow-md hover:-translate-y-0.5">
-        Rozumiem
-    </button>
+<div id="cookie-overlay"
+     class="fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-[#884A39]/20 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-500">
+    <div id="cookie-modal"
+         class="bg-white/95 backdrop-blur-2xl p-8 md:p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white max-w-lg w-full transform scale-90 transition-all duration-500">
+        <div class="text-center">
+            <div class="w-16 h-16 bg-[#F9E0BB] rounded-full flex items-center justify-center mx-auto mb-6 text-[#C38154]">
+                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h3 class="font-heading font-extrabold text-2xl text-[#884A39] mb-4">Dbamy o Twoją prywatność</h3>
+            <p class="text-[#884A39]/80 font-medium leading-relaxed mb-8">
+                Nasza strona wykorzystuje pliki cookies, aby zapewnić Ci najlepsze doświadczenia, w tym do poprawnego
+                działania Map Google i wyświetlania pięknych czcionek.
+                Dalsze korzystanie z serwisu oznacza zgodę na ich użycie.
+            </p>
+            <div class="flex flex-col gap-3">
+                <button id="accept-cookies"
+                        class="w-full bg-[#C38154] text-white px-8 py-4 rounded-full text-base font-bold hover:bg-[#884A39] transition-all shadow-lg hover:-translate-y-1">
+                    Rozumiem i akceptuję
+                </button>
+                <a href="/privacy"
+                   class="text-sm font-bold text-[#884A39]/60 hover:text-[#C38154] transition-colors uppercase tracking-widest">
+                    Polityka Prywatności
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
@@ -83,22 +106,31 @@ const {title} = Astro.props;
             transform: translate(0px, 0px) scale(1);
         }
     }
+
+    #cookie-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    #cookie-overlay.active #cookie-modal {
+        transform: scale(1);
+    }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const cookieBanner = document.getElementById('cookie-banner');
+        const overlay = document.getElementById('cookie-overlay');
         const acceptButton = document.getElementById('accept-cookies');
 
         if (!localStorage.getItem('cookiesAccepted')) {
             setTimeout(() => {
-                cookieBanner?.classList.remove('translate-y-full');
-            }, 500);
+                overlay?.classList.add('active');
+            }, 800);
         }
 
         acceptButton?.addEventListener('click', () => {
             localStorage.setItem('cookiesAccepted', 'true');
-            cookieBanner?.classList.add('translate-y-full');
+            overlay?.classList.remove('active');
         });
     });
 </script>
