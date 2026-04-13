@@ -4,34 +4,34 @@ import Layout from '../layouts/Layout.astro';
 const pricingItems = [
     {
         title: 'Diagnoza logopedyczna',
-        time: '50-60 min',
+        time: '45 min',
         price: '150 zł',
         description: 'Pierwsza wizyta obejmująca szczegółowy wywiad, badanie narządów mowy oraz ustalenie indywidualnego planu terapii.',
         color: '#C38154'
     },
     {
         title: 'Diagnoza + pisemna opinia',
-        time: '50-60 min',
+        time: '45 min',
         price: '180 zł',
         description: 'Kompleksowa diagnoza logopedyczna połączona z przygotowaniem i wydaniem szczegółowej opinii w formie pisemnej.',
         color: '#884A39'
     },
     {
-        title: 'Zajęcia logopedyczne - pełna sesja',
-        time: '45 min',
-        price: '120 zł',
-        description: 'Regularna wizyta terapeutyczna dla dzieci, dostosowana do postępów i potrzeb pacjenta.',
-        color: '#FFC26F'
-    },
-    {
-        title: 'Zajęcia logopedyczne - krótka sesja',
+        title: 'Zajęcia logopedyczne',
         time: '30 min',
         price: '100 zł',
-        description: 'Krótsza sesja terapeutyczna, dostosowana do możliwości skupienia najmłodszych pacjentów.',
+        description: 'Długość spotkania ustalamy indywidualnie, dbając o maksymalną efektywność i dobre samopoczucie najmłodszych pacjentów.',
         color: '#C38154'
     },
     {
-        title: 'Elektrostymulacja',
+        title: 'Zajęcia logopedyczne',
+        time: '45 min',
+        price: '120 zł',
+        description: 'Długość spotkania ustalamy indywidualnie, dbając o maksymalną efektywność i dobre samopoczucie pacjenta.',
+        color: '#FFC26F'
+    },
+    {
+        title: 'Elektrostymulacja - sesja',
         time: 'do 30 min',
         price: '60 zł',
         description: 'Zabieg elektrostymulacji bez terapii logopedycznej. Dokładny czas trwania sesji jest uzależniony od stymulowanych obszarów.',
@@ -50,12 +50,8 @@ const pricingItems = [
 <Layout title="Cennik">
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal-up">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-white/40 backdrop-blur-md border border-[#C38154]/30 text-[#884A39] font-bold tracking-widest uppercase text-xs mb-6 shadow-sm">
-                Inwestycja w zdrowie
-            </span>
-            <h1 class="font-heading font-extrabold text-5xl md:text-6xl text-[#884A39] leading-tight mb-8">
-                Jasne zasady, <br class="hidden md:block"/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C38154] to-[#FFC26F]">przejrzyste ceny.</span>
+            <h1 class="font-heading font-extrabold text-5xl md:text-6xl leading-tight mb-8">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C38154] to-[#FFC26F]">Cennik</span>
             </h1>
             <p class="text-lg md:text-xl text-[#884A39]/80 leading-relaxed max-w-2xl mx-auto">
                 Poznaj koszty usług w gabinecie Logorytm. Jeśli masz pytania dotyczące zakresu terapii, chętnie odpowiem
@@ -132,9 +128,9 @@ const pricingItems = [
                         </div>
                         <div>
                             <h3 class="font-bold text-[#884A39] text-lg mb-2">Odwoływanie wizyt</h3>
-                            <p class="text-[#884A39]/70 text-sm leading-relaxed">Bardzo proszę o informowanie o
-                                nieobecności z co najmniej 24-godzinnym wyprzedzeniem. Pozwoli to zaoferować termin
-                                innym oczekującym pacjentom.</p>
+                            <p class="text-[#884A39]/70 text-sm leading-relaxed">Informację o nieobecności należy
+                                przekazać z minimum 24-godzinnym wyprzedzeniem. Umożliwi to zapisanie na ten termin
+                                innego pacjenta..</p>
                         </div>
                     </div>
                 </div>

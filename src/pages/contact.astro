@@ -131,37 +131,6 @@ const galleryImages = [
         </div>
     </section>
 
-    <section class="py-24 bg-white/40 backdrop-blur-lg border-t border-white/50 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal-up">
-                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-[#884A39] mb-4">Galeria Gabinetu</h2>
-                <p class="text-[#884A39]/70 text-lg">Zobacz, w jakich warunkach pracujemy.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {galleryImages.map((img, index) => (
-                        <div class="reveal-up" style={`transition-delay: ${index * 100}ms`}>
-                            <div class="group relative aspect-square rounded-[2.5rem] overflow-hidden shadow-lg border-4 border-white/60 cursor-zoom-in">
-                                <img
-                                        src={img.src}
-                                        alt={img.alt}
-                                        class="gallery-img w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                        loading="lazy"
-                                />
-                                <div class="absolute inset-0 bg-[#884A39]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                                    <svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24"
-                                         stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
     <div id="lightbox"
          class="fixed inset-0 z-[10000] bg-[#884A39]/98 backdrop-blur-2xl flex items-center justify-center p-4 md:p-12 opacity-0 pointer-events-none transition-all duration-300">
         <button id="close-lightbox"

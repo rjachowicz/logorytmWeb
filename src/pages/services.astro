@@ -11,36 +11,28 @@ const services = [
         reverse: false
     },
     {
-        title: 'Konsultacje logopedyczne',
-        subtitle: 'Profesjonalne wsparcie i porady',
-        description: 'Spotkania, podczas których omawiamy niepokojące objawy, analizujemy postępy i dobieramy odpowiednie ćwiczenia wspierające rozwój mowy do pracy w domu.',
-        image: '/images/img5.png',
-        color: '#FFC26F',
-        reverse: true
-    },
-    {
         title: 'Terapia logopedyczna',
         subtitle: 'Indywidualne zajęcia usprawniające',
         description: 'Regularna praca nad korygowaniem wad wymowy i innych zaburzeń komunikacyjnych. Zajęcia prowadzone są w bezstresowej atmosferze, sprzyjającej przyswajaniu nowych umiejętności.',
         image: '/images/img6.png',
         color: '#884A39',
-        reverse: false
+        reverse: true
     },
     {
         title: 'Nauka czytania',
         subtitle: 'Płynne czytanie i zrozumienie tekstu',
-        description: 'Wsparcie w nabywaniu umiejętności czytania ze zrozumieniem. Wykorzystujemy nowoczesne metody wspomagające rozwój percepcji słuchowej i wzrokowej u dzieci.',
+        description: 'Pomagam dzieciom stawiać pierwsze kroki w świecie liter poprzez radosną zabawę. Dzięki angażującym ćwiczeniom słuchowym i wzrokowym budujemy solidne fundamenty, aby czytanie stało się dla Twojej pociechy fascynującą przygodą, a nie trudnym obowiązkiem.',
         image: '/images/img8.jpg',
         color: '#C38154',
-        reverse: true
+        reverse: false
     },
     {
         title: 'Elektrostymulacja',
         subtitle: 'Innowacyjne wsparcie terapii',
-        description: 'Bezpieczny zabieg fizykalny wspomagający leczenie zaburzeń logopedycznych. Wykorzystuje impulsy elektryczne do pobudzenia lub rozluźnienia mięśni aparatu artykulacyjnego.',
+        description: 'Bezpieczna metoda wspomagająca terapię logopedyczną. Wykorzystuje impulsy elektryczne do m.in pobudzenia lub rozluźnienia mięśni aparatu artykulacyjnego.',
         image: '/images/img9.jpg',
         color: '#FFC26F',
-        reverse: false
+        reverse: true
     }
 ];
 ---
@@ -48,15 +40,12 @@ const services = [
 <Layout title="Oferta">
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal-up">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-white/40 backdrop-blur-md border border-[#C38154]/30 text-[#884A39] font-bold tracking-widest uppercase text-xs mb-6 shadow-sm">
-                Kompleksowa opieka
-            </span>
             <h1 class="font-heading font-extrabold text-5xl md:text-6xl text-[#884A39] leading-tight mb-8">
                 Jak mogę <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C38154] to-[#FFC26F]">Ci pomóc?</span>
             </h1>
             <p class="text-lg md:text-xl text-[#884A39]/80 leading-relaxed max-w-2xl mx-auto">
                 Poznaj pełen zakres usług gabinetu Logorytm. Oferuję profesjonalną diagnozę i terapię opartą na
-                nowoczesnych, sprawdzonych metodach leczenia.
+                nowoczesnych, sprawdzonych metodach.
             </p>
         </div>
     </section>
@@ -111,39 +100,6 @@ const services = [
         </div>
     </section>
 
-    <section class="py-24 mt-16 bg-white/30 backdrop-blur-lg border-t border-b border-white/50 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 text-center reveal-up">
-            <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-[#884A39] mb-12">Innowacyjne techniki terapeutyczne</h2>
-
-            <div class="flex flex-wrap justify-center gap-6">
-                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
-                    <p class="font-bold text-[#884A39] text-lg">Masaż i Terapia Manualna</p>
-                    <p class="text-sm text-[#884A39]/70 mt-2">Holistyczne podejście integrujące techniki osteopatyczne i fizjoterapeutyczne w celu normalizacji napięcia mięśniowego.</p>
-                </div>
-
-                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
-                    <p class="font-bold text-[#884A39] text-lg">Elektrostymulacja z Treningiem</p>
-                    <p class="text-sm text-[#884A39]/70 mt-2">Innowacyjne połączenie prądów TENS/EMS z aktywnym treningiem miofunkcjonalnym dla optymalnych efektów.</p>
-                </div>
-
-                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
-                    <p class="font-bold text-[#884A39] text-lg">Kinesiotejping Logopedyczny</p>
-                    <p class="text-sm text-[#884A39]/70 mt-2">Wykorzystanie plastrów dynamicznych wspierających domykanie warg oraz prawidłową pracę mięśni twarzy i szyi.</p>
-                </div>
-
-                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
-                    <p class="font-bold text-[#884A39] text-lg">Metody SMURF i FTM</p>
-                    <p class="text-sm text-[#884A39]/70 mt-2">Nowoczesne strategie w diagnostyce i terapii wad wymowy, skupione na funkcjonalnym rozwoju kompetencji językowych.</p>
-                </div>
-
-                <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow text-left">
-                    <p class="font-bold text-[#884A39] text-lg">Miogopedia</p>
-                    <p class="text-sm text-[#884A39]/70 mt-2">Praktyczna terapia miofunkcjonalna nakierowana na korygowanie nieprawidłowej pozycji spoczynkowej języka i połykania.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="py-24 relative overflow-hidden z-10">
         <div class="max-w-5xl mx-auto px-6 reveal-up">
             <div class="bg-white/60 backdrop-blur-2xl rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/60">
@@ -153,7 +109,7 @@ const services = [
                         Gotowy na pierwszą wizytę?
                     </h3>
                     <p class="text-xl text-[#884A39]/70 mb-12 max-w-2xl mx-auto">
-                        Skontaktuj się ze mną telefonicznie lub mailowo, aby ustalić dogodny termin pierwszej
+                        Skontaktuj się ze mną, aby ustalić dogodny termin pierwszej
                         konsultacji.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
