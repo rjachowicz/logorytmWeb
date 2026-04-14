@@ -1,5 +1,11 @@
 ---
 import '../styles/global.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/montserrat';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import '@fontsource/poppins/800.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -15,24 +21,27 @@ const {title} = Astro.props;
     <meta charset="UTF-8"/>
     <meta name="description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy."/>
     <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type="image/png" href="/src/assets/logorytm-logo.png"/>
+
+    <link rel="icon" type="image/png" href="/logorytm-logo.png"/>
+
+    <link rel="apple-touch-icon" href="/logorytm-logo-background.png"/>
+
     <meta name="generator" content={Astro.generator}/>
     <title>{title} | Logorytm Gabinet Logopedyczny</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap"
-          rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} | Logorytm Gabinet Logopedyczny`} />
+    <meta property="og:description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy." />
+    <meta property="og:image" content="/logorytm-logo-background.png" />
+    <meta property="og:url" content={Astro.url} />
+    <link rel="canonical" href={Astro.url} />
 </head>
 <body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
 
 <div class="fixed inset-0 z-[-1] overflow-hidden bg-[#FDFBF7] pointer-events-none">
-    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C38154]/20 blur-[120px] mix-blend-multiply animate-blob"></div>
-    <div class="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-[#FFC26F]/20 blur-[100px] mix-blend-multiply animate-blob animation-delay-2000"></div>
-    <div class="absolute bottom-[-20%] left-[10%] w-[60vw] h-[60vw] rounded-full bg-[#884A39]/15 blur-[130px] mix-blend-multiply animate-blob animation-delay-4000"></div>
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C38154]/20 blur-[60px] md:blur-[120px] mix-blend-multiply md:animate-blob"></div>
+    <div class="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-[#FFC26F]/20 blur-[50px] md:blur-[100px] mix-blend-multiply md:animate-blob md:animation-delay-2000"></div>
+    <div class="absolute bottom-[-20%] left-[10%] w-[60vw] h-[60vw] rounded-full bg-[#884A39]/15 blur-[60px] md:blur-[130px] mix-blend-multiply md:animate-blob md:animation-delay-4000"></div>
 </div>
 
 <div class="sticky top-0 z-50">

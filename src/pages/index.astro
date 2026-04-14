@@ -1,13 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import {Image} from 'astro:assets';
-import logoImage from '../assets/logorytm-logo.png';
+import mainPortret from '../assets/mainPortret.jpg';
+import img1 from '../assets/img1.jpg';
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.png';
 
 const services = [
     {
         title: 'Innowacyjne techniki terapeutyczne',
         description: 'Łączę najnowszą wiedzę logopedyczną z innowacyjnymi narzędziami wspomagającymi, takimi jak elektrostymulacja czy kinesiotaping. Dzięki temu korekcja wad wymowy i praca nad płynnością stają się nie tylko skuteczniejsze, ale i bardziej fascynujące dla pacjenta.',
-        image: '/images/img1.jpg',
+        image: img1,
         color: '#C38154',
         span: 'col-span-1 md:col-span-2 row-span-2',
         height: 'min-h-[400px] md:min-h-[500px]'
@@ -15,7 +18,7 @@ const services = [
     {
         title: 'Nauka czytania',
         description: 'Wsparcie w nabywaniu umiejętności czytania ze zrozumieniem.',
-        image: '/images/img2.jpg',
+        image: img2,
         color: '#FFC26F',
         span: 'col-span-1',
         height: 'min-h-[250px]'
@@ -23,7 +26,7 @@ const services = [
     {
         title: 'Terapia Logopedyczna',
         description: 'Przyjazne zajęcia wspierające rozwój mowy',
-        image: '/images/img3.png',
+        image: img3,
         color: '#F9E0BB',
         span: 'col-span-1',
         height: 'min-h-[250px]'
@@ -59,8 +62,8 @@ const steps = [
                 </h1>
 
                 <p class="text-lg md:text-xl text-[#884A39]/80 font-medium leading-relaxed max-w-lg mb-12">
-                    Profesjonalna diagnoza i innowacyjna terapia logopedyczna.
-                    Wspieram rozwój komunikacyjny dzieci, przełamując bariery z uśmiechem i empatią.
+                    Profesjonalna diagnoza i innowacyjna terapia logopedyczna. Wspieram rozwój komunikacyjny dzieci,
+                    przełamując bariery z uśmiechem i empatią.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4">
@@ -83,7 +86,7 @@ const steps = [
                     <span class="text-sm font-bold text-[#884A39]/50 uppercase tracking-widest">Znajdziesz mnie na:</span>
                     <div class="flex gap-3">
                         <a href="https://www.facebook.com/profile.php?id=61574499106160" target="_blank"
-                           rel="noopener noreferrer"
+                           rel="noopener noreferrer" aria-label="Odwiedź nasz profil na Facebooku"
                            class="w-10 h-10 rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white flex items-center justify-center text-[#884A39] hover:bg-[#C38154] hover:text-white hover:-translate-y-1 transition-all">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd"
@@ -91,8 +94,8 @@ const steps = [
                                       clip-rule="evenodd"/>
                             </svg>
                         </a>
-                        <a href="https://maps.app.goo.gl/voQbtfMRnBYd3W4y5" target="_blank"
-                           rel="noopener noreferrer"
+                        <a href="https://maps.app.goo.gl/voQbtfMRnBYd3W4y5" target="_blank" rel="noopener noreferrer"
+                           aria-label="Sprawdź naszą lokalizację na mapie Google"
                            class="w-10 h-10 rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white flex items-center justify-center text-[#884A39] hover:bg-[#C38154] hover:text-white hover:-translate-y-1 transition-all">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd"
@@ -106,9 +109,15 @@ const steps = [
 
             <div class="lg:col-span-6 relative mt-16 lg:mt-0 reveal-right">
                 <div class="relative w-full aspect-4/5 md:aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/80 z-10">
-                    <img src=/images/mainPortret.jpg
-                         alt="Terapia logopedyczna"
-                         class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"/>
+                    <Image
+                            src={mainPortret}
+                            alt="Terapia logopedyczna"
+                            loading="eager"
+                            fetchpriority="high"
+                            widths={[400, 800, 1200]}
+                            sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px"
+                            class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+                    />
                     <div class="absolute inset-0 bg-linear-to-tr from-[#884A39]/40 via-transparent to-transparent"></div>
                 </div>
             </div>
@@ -158,8 +167,8 @@ const steps = [
                 {services.map((service, index) => (
                         <div class={`group relative rounded-[2.5rem] overflow-hidden ${service.span} ${service.height} reveal-up shadow-xl`}
                              style={`transition-delay: ${index * 150}ms`}>
-                            <img src={service.image} alt={service.title}
-                                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"/>
+                            <Image src={service.image} alt={service.title}
+                                   class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"/>
                             <div class="absolute inset-0 bg-linear-to-t from-[#884A39]/90 via-[#884A39]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
 
                             <div class="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
@@ -227,8 +236,15 @@ const steps = [
                         <div class="absolute inset-0 bg-[#C38154] transform -rotate-3 rounded-[3rem] opacity-20"></div>
 
                         <div class="relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#884A39]">
-                            <img src=/images/mainPortret.jpg
-                                 alt="Logopeda portret" class="w-full h-full object-cover"/>
+                            <Image
+                                    src={mainPortret}
+                                    alt="Terapia logopedyczna"
+                                    loading="eager"
+                                    fetchpriority="high"
+                                    widths={[400, 800, 1200]}
+                                    sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px"
+                                    class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+                            />
                         </div>
                     </div>
                 </div>
@@ -240,13 +256,19 @@ const steps = [
                     </h2>
                     <div class="space-y-6 text-lg text-white/80 leading-relaxed mb-10">
                         <p>
-                            Nazywam się <strong>Joanna Jachowicz</strong> i jestem logopedą, dla którego wspieranie rozwoju najmłodszych to pasja i codzienna radość. Pomagam dzieciom pokonywać trudności w mówieniu, by mogły z odwagą, pewnością siebie i uśmiechem dzielić się swoimi myślami z rówieśnikami oraz bliskimi.
+                            Nazywam się <strong>Joanna Jachowicz</strong> i jestem logopedą, dla którego wspieranie
+                            rozwoju najmłodszych to pasja i codzienna radość. Pomagam dzieciom pokonywać trudności w
+                            mówieniu, by mogły z odwagą, pewnością siebie i uśmiechem dzielić się swoimi myślami z
+                            rówieśnikami oraz bliskimi.
                         </p>
                         <p>
-                            Mój gabinet <em>Logorytm</em> to miejsce stworzone z myślą o emocjach i potrzebach dziecka. Wierzę, że najpiękniejsze postępy rodzą się tam, gdzie nauka staje się przygodą, a terapia opiera się na zabawie, wzajemnym zaufaniu i pełnym poczuciu bezpieczeństwa.
+                            Mój gabinet <em>Logorytm</em> to miejsce stworzone z myślą o emocjach i potrzebach dziecka.
+                            Wierzę, że najpiękniejsze postępy rodzą się tam, gdzie nauka staje się przygodą, a terapia
+                            opiera się na zabawie, wzajemnym zaufaniu i pełnym poczuciu bezpieczeństwa.
                         </p>
                         <p>
-                            W pracy stawiam na rzetelną wiedzę i partnerską współpracę z rodzicami, bo to właśnie wspólne działania pozwalają stworzyć dziecku najlepsze warunki do rozkwitu jego mowy.
+                            W pracy stawiam na rzetelną wiedzę i partnerską współpracę z rodzicami, bo to właśnie
+                            wspólne działania pozwalają stworzyć dziecku najlepsze warunki do rozkwitu jego mowy.
                         </p>
                     </div>
 
@@ -265,7 +287,7 @@ const steps = [
 
                         <div class="flex gap-3">
                             <a href="https://www.facebook.com/profile.php?id=61574499106160" target="_blank"
-                               rel="noopener noreferrer"
+                               rel="noopener noreferrer" aria-label="Odwiedź nasz profil na Facebooku"
                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#C38154] hover:-translate-y-1 transition-all">
                                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
@@ -274,7 +296,7 @@ const steps = [
                                 </svg>
                             </a>
                             <a href="https://maps.app.goo.gl/9VgHfHr2W2wW14uB7" target="_blank"
-                               rel="noopener noreferrer"
+                               rel="noopener noreferrer" aria-label="Sprawdź naszą lokalizację na mapie Google"
                                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#C38154] hover:-translate-y-1 transition-all">
                                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"

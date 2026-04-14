@@ -1,6 +1,6 @@
 ---
 import {Image} from 'astro:assets';
-import logoSymbol from '../assets/logorytm-logo.png';
+import logoSymbol from '../../public/logorytm-logo.png';
 
 const navItems = [
     {name: 'Strona główna', href: '/'},
@@ -42,8 +42,9 @@ const navItems = [
         </nav>
 
         <button id="mobile-menu-btn"
+                aria-label="Otwórz menu mobilne"
                 class="md:hidden text-[#884A39] p-1 hover:text-[#C38154] transition-all duration-300 relative z-30">
-            <svg id="menu-icon" class="w-8 h-8 transition-transform duration-500 ease-out" fill="none"
+            <svg id="menu-icon" aria-hidden="true" class="w-8 h-8 transition-transform duration-500 ease-out" fill="none"
                  viewBox="0 0 24 24" stroke="currentColor">
                 <path id="menu-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M4 6h16M4 12h16m-7 6h7"/>
@@ -82,6 +83,7 @@ const navItems = [
 
             if (isOpen) {
                 wrapper?.classList.replace('grid-rows-[0fr]', 'grid-rows-[1fr]');
+                btn.setAttribute('aria-expanded', 'true');
 
                 setTimeout(() => {
                     content?.classList.replace('opacity-0', 'opacity-100');
@@ -91,6 +93,7 @@ const navItems = [
                 menuIcon?.classList.add('rotate-180');
             } else {
                 content?.classList.replace('opacity-100', 'opacity-0');
+                btn.setAttribute('aria-expanded', 'false');
 
                 setTimeout(() => {
                     wrapper?.classList.replace('grid-rows-[1fr]', 'grid-rows-[0fr]');

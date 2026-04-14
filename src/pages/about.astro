@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {Image} from 'astro:assets';
+import mainPortret from '../assets/mainPortret.jpg';
 ---
 
 <Layout title="O mnie">
@@ -16,16 +18,16 @@ import Layout from '../layouts/Layout.astro';
                 <div class="space-y-6 text-lg text-[#884A39]/80 leading-relaxed">
                     <p class="mb-4">
                         Nazywam się <strong>Joanna Jachowicz</strong>. Ukończyłam studia pedagogiczne ze
-                        specjalnością logopedia z komunikacją społeczną na Uniwersytecie Ignatianum w Krakowie.
-                        Obecnie z wielką radością dalej rozwijam
+                        specjalnością logopedia z komunikacją społeczną na Uniwersytecie Ignatianum w Krakowie. Obecnie
+                        z wielką radością dalej rozwijam
                         swoje kompetencje, realizując studia podyplomowe z neurologopedii z elementami
                         tyflologopedii na Uniwersytecie Andrzeja Frycza Modrzewskiego w Krakowie.
                     </p>
                     <p>
                         Moją największą pasją jest wspieranie najmłodszych w odkrywaniu radości płynącej ze
                         swobodnej komunikacji i przełamywaniu barier językowych. W gabinecie dbam o to, by każde
-                        spotkanie było czasem pełnym uśmiechu i akceptacji, gdzie nauka odbywa się poprzez zabawę.
-                        Łączę rzetelną wiedzę merytoryczną z empatycznym podejściem, bo wierzę, że poczucie
+                        spotkanie było czasem pełnym uśmiechu i akceptacji, gdzie nauka odbywa się poprzez zabawę. Łączę
+                        rzetelną wiedzę merytoryczną z empatycznym podejściem, bo wierzę, że poczucie
                         bezpieczeństwa dziecka to najlepszy fundament do rozwoju jego mowy.
                     </p>
                 </div>
@@ -33,13 +35,15 @@ import Layout from '../layouts/Layout.astro';
                 <div class="mt-10 flex items-center gap-6">
                     <div class="flex -space-x-3">
                         <div class="w-12 h-12 rounded-full border-2 border-white bg-[#C38154] flex items-center justify-center text-white">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg aria-hidden="true" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                         </div>
                         <div class="w-12 h-12 rounded-full border-2 border-white bg-[#FFC26F] flex items-center justify-center text-white">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg aria-hidden="true" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
@@ -51,8 +55,15 @@ import Layout from '../layouts/Layout.astro';
 
             <div class="lg:col-span-6 relative mt-12 lg:mt-0 reveal-right">
                 <div class="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/60">
-                    <img src=/images/mainPortret.jpg
-                         alt="Logopeda w trakcie pracy" class="w-full h-full object-cover"/>
+                    <Image
+                            src={mainPortret}
+                            alt="Terapia logopedyczna"
+                            loading="eager"
+                            fetchpriority="high"
+                            widths={[400, 800, 1200]}
+                            sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px"
+                            class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+                    />
                 </div>
             </div>
 
@@ -72,7 +83,8 @@ import Layout from '../layouts/Layout.astro';
                 <div class="grid md:grid-cols-2 gap-12">
                     <div>
                         <div class="flex items-center gap-4 mb-8 border-b border-[#884A39]/10 pb-4">
-                            <svg class="w-8 h-8 text-[#C38154]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg aria-hidden="true" class="w-8 h-8 text-[#C38154]" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                       d="M12 14l9-5-9-5-9 5 9 5z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -102,7 +114,8 @@ import Layout from '../layouts/Layout.astro';
 
                     <div>
                         <div class="flex items-center gap-4 mb-8 border-b border-[#884A39]/10 pb-4">
-                            <svg class="w-8 h-8 text-[#FFC26F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg aria-hidden="true" class="w-8 h-8 text-[#FFC26F]" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                       d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                             </svg>
@@ -110,8 +123,8 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         <ul class="space-y-4">
                             <li class="flex items-start gap-3 bg-white/50 p-4 rounded-xl border border-white/60 shadow-sm">
-                                <svg class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
+                                <svg aria-hidden="true" class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M5 13l4 4L19 7"/>
                                 </svg>
@@ -122,8 +135,8 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
                             </li>
                             <li class="flex items-start gap-3 bg-white/50 p-4 rounded-xl border border-white/60 shadow-sm">
-                                <svg class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
+                                <svg aria-hidden="true" class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M5 13l4 4L19 7"/>
                                 </svg>
@@ -133,8 +146,8 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
                             </li>
                             <li class="flex items-start gap-3 bg-white/50 p-4 rounded-xl border border-white/60 shadow-sm">
-                                <svg class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
+                                <svg aria-hidden="true" class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M5 13l4 4L19 7"/>
                                 </svg>
@@ -145,8 +158,8 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
                             </li>
                             <li class="flex items-start gap-3 bg-white/50 p-4 rounded-xl border border-white/60 shadow-sm">
-                                <svg class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
+                                <svg aria-hidden="true" class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M5 13l4 4L19 7"/>
                                 </svg>
@@ -157,8 +170,8 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
                             </li>
                             <li class="flex items-start gap-3 bg-white/50 p-4 rounded-xl border border-white/60 shadow-sm">
-                                <svg class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
+                                <svg aria-hidden="true" class="w-6 h-6 text-[#FFC26F] shrink-0 mt-0.5" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M5 13l4 4L19 7"/>
                                 </svg>
@@ -185,7 +198,7 @@ import Layout from '../layouts/Layout.astro';
                 <div class="bg-white/60 backdrop-blur-md p-8 rounded-3xl border border-white shadow-lg reveal-up"
                      style="transition-delay: 0ms">
                     <div class="w-14 h-14 rounded-2xl bg-[#C38154]/10 flex items-center justify-center mb-6 text-[#C38154]">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg aria-hidden="true" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                   d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
@@ -198,20 +211,20 @@ import Layout from '../layouts/Layout.astro';
                 <div class="bg-white/60 backdrop-blur-md p-8 rounded-3xl border border-white shadow-lg reveal-up"
                      style="transition-delay: 150ms">
                     <div class="w-14 h-14 rounded-2xl bg-[#FFC26F]/10 flex items-center justify-center mb-6 text-[#FFC26F]">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg aria-hidden="true" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                   d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
                     <h3 class="font-bold text-xl text-[#884A39] mb-3">Skuteczność</h3>
-                    <p class="text-[#884A39]/70 leading-relaxed text-sm">W pracy z dzieckiem wybieram tylko
-                        sprawdzone i skuteczne metody. Dzięki temu wspólnie i sprawnie osiągamy wyznaczone cele.</p>
+                    <p class="text-[#884A39]/70 leading-relaxed text-sm">W pracy z dzieckiem wybieram tylko sprawdzone i
+                        skuteczne metody. Dzięki temu wspólnie i sprawnie osiągamy wyznaczone cele.</p>
                 </div>
 
                 <div class="bg-white/60 backdrop-blur-md p-8 rounded-3xl border border-white shadow-lg reveal-up"
                      style="transition-delay: 300ms">
                     <div class="w-14 h-14 rounded-2xl bg-[#884A39]/10 flex items-center justify-center mb-6 text-[#884A39]">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg aria-hidden="true" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                   d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
