@@ -11,33 +11,33 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
     title: string;
+    preloadImage?: string;
 }
 
-const {title} = Astro.props;
+const {title, preloadImage} = Astro.props;
 ---
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8"/>
     <meta name="description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy."/>
-    <meta name="viewport" content="width=device-width"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/png" href="/logorytm-logo.png"/>
-
     <link rel="apple-touch-icon" href="/logorytm-logo-background.png"/>
-
     <meta name="generator" content={Astro.generator}/>
     <title>{title} | Logorytm Gabinet Logopedyczny</title>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={`${title} | Logorytm Gabinet Logopedyczny`} />
-    <meta property="og:description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy." />
-    <meta property="og:image" content="/logorytm-logo-background.png" />
-    <meta property="og:url" content={Astro.url} />
-    <link rel="canonical" href={Astro.url} />
+    {preloadImage &&
+            <link rel="preload" as="image" href={preloadImage} fetchpriority="high"/>}
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content={`${title} | Logorytm Gabinet Logopedyczny`}/>
+    <meta property="og:description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy."/>
+    <meta property="og:image" content="/logorytm-logo-background.png"/>
+    <meta property="og:url" content={Astro.url}/>
+    <link rel="canonical" href={Astro.url}/>
 </head>
 <body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
-
 <div class="fixed inset-0 z-[-1] overflow-hidden bg-[#FDFBF7] pointer-events-none">
     <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C38154]/20 blur-[60px] md:blur-[120px] mix-blend-multiply md:animate-blob"></div>
     <div class="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-[#FFC26F]/20 blur-[50px] md:blur-[100px] mix-blend-multiply md:animate-blob md:animation-delay-2000"></div>

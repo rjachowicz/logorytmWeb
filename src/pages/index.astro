@@ -1,10 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {Image} from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import mainPortret from '../assets/mainPortret.jpg';
 import img1 from '../assets/img1.jpg';
 import img2 from '../assets/img2.jpg';
 import img3 from '../assets/img3.png';
+
+const optimizedMainImg = await getImage({
+    src: mainPortret,
+    format: 'avif',
+    width: 400
+});
 
 const services = [
     {
@@ -40,11 +46,11 @@ const steps = [
 ];
 ---
 
-<Layout title="Strona Główna">
+<Layout title="Strona Główna" preloadImage={optimizedMainImg.src}>
     <section class="relative min-h-[95vh] flex items-center overflow-hidden pt-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center py-12">
 
-            <div class="lg:col-span-6 reveal-left">
+            <div class="lg:col-span-6 hero-reveal-left">
                 <div class="inline-flex items-center gap-3 bg-white/70 backdrop-blur-md px-5 py-2 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-8 border border-white/50">
                     <span class="w-2.5 h-2.5 rounded-full bg-[#FFC26F] animate-ping-slow"></span>
                     <p class="text-sm font-semibold tracking-wide text-[#884A39] uppercase">Nowoczesna Logopedia</p>
@@ -107,13 +113,14 @@ const steps = [
                 </div>
             </div>
 
-            <div class="lg:col-span-6 relative mt-16 lg:mt-0 reveal-right">
+            <div class="lg:col-span-6 relative mt-16 lg:mt-0 hero-reveal-right">
                 <div class="relative w-full aspect-4/5 md:aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/80 z-10">
                     <Image
                             src={mainPortret}
                             alt="Terapia logopedyczna"
                             loading="eager"
                             fetchpriority="high"
+                            format="avif"
                             widths={[400, 800, 1200]}
                             sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px"
                             class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
@@ -241,6 +248,7 @@ const steps = [
                                     alt="Terapia logopedyczna"
                                     loading="eager"
                                     fetchpriority="high"
+                                    format="avif"
                                     widths={[400, 800, 1200]}
                                     sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px"
                                     class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"

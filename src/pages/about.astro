@@ -1,14 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {Image} from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import mainPortret from '../assets/mainPortret.jpg';
+
+const optimizedAboutImg = await getImage({
+    src: mainPortret,
+    format: 'avif',
+    width: 400
+});
 ---
 
-<Layout title="O mnie">
+<Layout title="O mnie" preloadImage={optimizedAboutImg.src}>
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-16 items-center relative z-10">
 
-            <div class="lg:col-span-6 reveal-left">
+            <div class="lg:col-span-6 hero-reveal-left">
                 <span class="text-[#C38154] font-bold tracking-widest uppercase text-sm mb-4 block">Poznajmy się</span>
                 <h1 class="font-heading font-extrabold text-5xl md:text-6xl text-[#884A39] leading-tight mb-6">
                     Więcej niż <br/>
@@ -53,16 +59,17 @@ import mainPortret from '../assets/mainPortret.jpg';
                 </div>
             </div>
 
-            <div class="lg:col-span-6 relative mt-12 lg:mt-0 reveal-right">
+            <div class="lg:col-span-6 relative mt-12 lg:mt-0 hero-reveal-right">
                 <div class="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/60">
                     <Image
                             src={mainPortret}
-                            alt="Terapia logopedyczna"
+                            alt="Logopeda w trakcie pracy"
                             loading="eager"
                             fetchpriority="high"
+                            format="avif"
                             widths={[400, 800, 1200]}
                             sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px"
-                            class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+                            class="w-full h-full object-cover"
                     />
                 </div>
             </div>
