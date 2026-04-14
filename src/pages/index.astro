@@ -381,29 +381,6 @@ const steps = [
         }
     }
 
-    .reveal-up {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-
-    .reveal-left {
-        opacity: 0;
-        transform: translateX(-50px);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-
-    .reveal-right {
-        opacity: 0;
-        transform: translateX(50px);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-
-    .reveal-up.active, .reveal-left.active, .reveal-right.active {
-        opacity: 1;
-        transform: translate(0);
-    }
-
     .slide-up-delayed {
         animation: floatUp 1s cubic-bezier(0.5, 0, 0, 1) 0.8s forwards;
         opacity: 0;
@@ -417,26 +394,3 @@ const steps = [
         }
     }
 </style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => {
-            observer.observe(el);
-        });
-    });
-</script>

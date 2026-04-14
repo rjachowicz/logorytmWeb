@@ -11,9 +11,10 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
     title: string;
+    preloadImage?: string;
 }
 
-const {title} = Astro.props;
+const {title, preloadImage} = Astro.props;
 ---
 
 <html lang="pl">
@@ -26,6 +27,11 @@ const {title} = Astro.props;
     <meta name="generator" content={Astro.generator}/>
     <title>{title} | Logorytm Gabinet Logopedyczny</title>
 
+    <link rel="preconnect" href="https://www.google.com"/>
+
+    {preloadImage &&
+            <link rel="preload" as="image" href={preloadImage} fetchpriority="high"/>}
+
     <meta property="og:type" content="website"/>
     <meta property="og:title" content={`${title} | Logorytm Gabinet Logopedyczny`}/>
     <meta property="og:description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy."/>
@@ -34,10 +40,10 @@ const {title} = Astro.props;
     <link rel="canonical" href={Astro.url}/>
 </head>
 <body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
-<div class="fixed inset-0 z-[-1] overflow-hidden bg-[#FDFBF7] pointer-events-none">
-    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C38154]/20 blur-[60px] md:blur-[120px] mix-blend-multiply md:animate-blob"></div>
-    <div class="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-[#FFC26F]/20 blur-[50px] md:blur-[100px] mix-blend-multiply md:animate-blob md:animation-delay-2000"></div>
-    <div class="absolute bottom-[-20%] left-[10%] w-[60vw] h-[60vw] rounded-full bg-[#884A39]/15 blur-[60px] md:blur-[130px] mix-blend-multiply md:animate-blob md:animation-delay-4000"></div>
+<div class="fixed inset-0 z-[-1] overflow-hidden bg-[#FDFBF7] pointer-events-none transform-gpu">
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C38154]/20 blur-[60px] md:blur-[120px] mix-blend-multiply md:animate-blob will-change-transform"></div>
+    <div class="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-[#FFC26F]/20 blur-[50px] md:blur-[100px] mix-blend-multiply md:animate-blob md:animation-delay-2000 will-change-transform"></div>
+    <div class="absolute bottom-[-20%] left-[10%] w-[60vw] h-[60vw] rounded-full bg-[#884A39]/15 blur-[60px] md:blur-[130px] mix-blend-multiply md:animate-blob md:animation-delay-4000 will-change-transform"></div>
 </div>
 
 <div class="sticky top-0 z-50">
@@ -64,7 +70,8 @@ const {title} = Astro.props;
             <h3 class="font-heading font-extrabold text-2xl text-[#884A39] mb-4">Dbamy o Twoją prywatność</h3>
             <p class="text-[#884A39]/80 font-medium leading-relaxed mb-8">
                 Nasza strona wykorzystuje pliki cookies, aby zapewnić Ci najlepsze doświadczenia, w tym do poprawnego
-                działania Map Google i wyświetlania pięknych czcionek. Dalsze korzystanie z serwisu oznacza zgodę na ich użycie.
+                działania Map Google i wyświetlania pięknych czcionek. Dalsze korzystanie z serwisu oznacza zgodę na ich
+                użycie.
             </p>
             <div class="flex flex-col gap-3">
                 <button id="accept-cookies"
@@ -72,7 +79,7 @@ const {title} = Astro.props;
                     Rozumiem i akceptuję
                 </button>
                 <a href="/privacy"
-                   class="text-sm font-bold text-[#884A39]/60 hover:text-[#C38154] transition-colors uppercase tracking-widest">
+                   class="text-sm font-bold text-[#884A39]/60 hover:text-[#C38154] transition-colors uppercase tracking-widest p-2">
                     Polityka Prywatności
                 </a>
             </div>
@@ -119,6 +126,29 @@ const {title} = Astro.props;
     #cookie-overlay.active #cookie-modal {
         transform: scale(1);
     }
+
+    .reveal-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-up.active, .reveal-left.active, .reveal-right.active {
+        opacity: 1;
+        transform: translate(0);
+    }
 </style>
 
 <script>
@@ -135,6 +165,25 @@ const {title} = Astro.props;
         acceptButton?.addEventListener('click', () => {
             localStorage.setItem('cookiesAccepted', 'true');
             overlay?.classList.remove('active');
+        });
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => {
+            observer.observe(el);
         });
     });
 </script>

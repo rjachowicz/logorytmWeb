@@ -153,29 +153,6 @@ const galleryImages = [
 </Layout>
 
 <style is:global>
-    .reveal-up {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-
-    .reveal-left {
-        opacity: 0;
-        transform: translateX(-50px);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-
-    .reveal-right {
-        opacity: 0;
-        transform: translateX(50px);
-        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-
-    .reveal-up.active, .reveal-left.active, .reveal-right.active {
-        opacity: 1;
-        transform: translate(0);
-    }
-
     body.lightbox-open {
         overflow: hidden;
     }
