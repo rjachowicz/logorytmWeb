@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.logorytm-com.pl/sitemap-index.xml
+Sitemap: https://www.logorytm.com/sitemap-index.xml
