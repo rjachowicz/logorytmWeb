@@ -1,16 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image, getImage } from 'astro:assets';
+import {Image} from 'astro:assets';
 import mainPortret from '../assets/mainPortret.jpg';
 import img1 from '../assets/img1.jpg';
 import img2 from '../assets/img2.jpg';
 import img3 from '../assets/img3.png';
-
-const optimizedMainImg = await getImage({
-    src: mainPortret,
-    format: 'avif',
-    width: 400
-});
 
 const services = [
     {
@@ -46,7 +40,7 @@ const steps = [
 ];
 ---
 
-<Layout title="Strona Główna" preloadImage={optimizedMainImg.src}>
+<Layout title="Strona Główna">
     <section class="relative min-h-[95vh] flex items-center overflow-hidden pt-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center py-12">
 
@@ -61,8 +55,9 @@ const steps = [
                     <span class="relative inline-block">
                         <span class="relative z-10 text-transparent bg-clip-text bg-linear-to-r from-[#C38154] to-[#FFC26F]">naturalny rytm</span>
                         <svg class="absolute w-full h-4 -bottom-1 left-0 text-[#F9E0BB]/50 z-0" viewBox="0 0 100 10"
-                             preserveAspectRatio="none"><path d="M0 5 Q 50 15 100 5" stroke="currentColor"
-                                                              stroke-width="4" fill="none"/></svg>
+                             preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 50 15 100 5"
+                                                                                 stroke="currentColor" stroke-width="4"
+                                                                                 fill="none"/></svg>
                     </span>
                     mowy.
                 </h1>
@@ -78,9 +73,10 @@ const steps = [
                         <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></span>
                         <span class="relative flex items-center gap-2">Umów wizytę <svg
                                 class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
-                                                                                stroke-linejoin="round" stroke-width="2"
-                                                                                d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
+                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
                     </a>
                     <a href="/about"
                        class="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold text-[#884A39] bg-white/60 backdrop-blur-md border border-white/50 hover:bg-white transition-all hover:-translate-y-1 shadow-sm">
@@ -93,8 +89,8 @@ const steps = [
                     <div class="flex gap-3">
                         <a href="https://www.facebook.com/profile.php?id=61574499106160" target="_blank"
                            rel="noopener noreferrer" aria-label="Odwiedź nasz profil na Facebooku"
-                           class="w-10 h-10 rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white flex items-center justify-center text-[#884A39] hover:bg-[#C38154] hover:text-white hover:-translate-y-1 transition-all">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                           class="w-12 h-12 rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white flex items-center justify-center text-[#884A39] hover:bg-[#C38154] hover:text-white hover:-translate-y-1 transition-all">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                       d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
                                       clip-rule="evenodd"/>
@@ -102,8 +98,8 @@ const steps = [
                         </a>
                         <a href="https://maps.app.goo.gl/voQbtfMRnBYd3W4y5" target="_blank" rel="noopener noreferrer"
                            aria-label="Sprawdź naszą lokalizację na mapie Google"
-                           class="w-10 h-10 rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white flex items-center justify-center text-[#884A39] hover:bg-[#C38154] hover:text-white hover:-translate-y-1 transition-all">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                           class="w-12 h-12 rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white flex items-center justify-center text-[#884A39] hover:bg-[#C38154] hover:text-white hover:-translate-y-1 transition-all">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                       d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
                                       clip-rule="evenodd"/>
@@ -162,8 +158,8 @@ const steps = [
                 <a href="/services"
                    class="mt-6 md:mt-0 group inline-flex items-center gap-3 text-[#884A39] font-bold text-lg hover:text-[#C38154] transition-colors">
                     Zobacz pełną ofertę
-                    <span class="w-10 h-10 rounded-full bg-white/70 backdrop-blur-md shadow-sm border border-white/50 flex items-center justify-center group-hover:bg-[#C38154] group-hover:text-white transition-all">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path
+                    <span class="w-12 h-12 rounded-full bg-white/70 backdrop-blur-md shadow-sm border border-white/50 flex items-center justify-center group-hover:bg-[#C38154] group-hover:text-white transition-all">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </span>
@@ -175,6 +171,10 @@ const steps = [
                         <div class={`group relative rounded-[2.5rem] overflow-hidden ${service.span} ${service.height} reveal-up shadow-xl`}
                              style={`transition-delay: ${index * 150}ms`}>
                             <Image src={service.image} alt={service.title}
+                                   format="avif"
+                                   loading="lazy"
+                                   widths={[400, 800]}
+                                   sizes="(max-width: 768px) 400px, 800px"
                                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"/>
                             <div class="absolute inset-0 bg-linear-to-t from-[#884A39]/90 via-[#884A39]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
 
@@ -190,7 +190,8 @@ const steps = [
                                        class="inline-flex items-center gap-2 text-white font-semibold hover:underline decoration-2 underline-offset-4"
                                        style={`text-decoration-color: ${service.color}`}>
                                         Więcej szczegółów
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                             aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M9 5l7 7-7 7"/>
                                         </svg>
@@ -229,7 +230,7 @@ const steps = [
     </section>
 
     <section class="py-32 bg-[#884A39] relative overflow-hidden">
-        <svg class="absolute -top-px left-0 w-full opacity-10" viewBox="0 0 1440 320"
+        <svg class="absolute -top-px left-0 w-full opacity-10" viewBox="0 0 1440 320" aria-hidden="true"
              xmlns="http://www.w3.org/2000/svg">
             <path fill="#ffffff" fill-opacity="1"
                   d="M0,128L48,138.7C96,149,192,171,288,165.3C384,160,480,128,576,133.3C672,139,768,181,864,197.3C960,213,1056,203,1152,181.3C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
@@ -245,9 +246,8 @@ const steps = [
                         <div class="relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#884A39]">
                             <Image
                                     src={mainPortret}
-                                    alt="Terapia logopedyczna"
-                                    loading="eager"
-                                    fetchpriority="high"
+                                    alt="Joanna Jachowicz - logopeda"
+                                    loading="lazy"
                                     format="avif"
                                     widths={[400, 800, 1200]}
                                     sizes="(max-width: 768px) 400px, (max-width: 1024px) 800px, 1200px"
@@ -285,7 +285,7 @@ const steps = [
                            class="inline-flex items-center gap-3 text-[#FFC26F] font-bold text-lg hover:text-white transition-colors group">
                             Więcej o moim doświadczeniu
                             <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor">
+                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
@@ -296,8 +296,8 @@ const steps = [
                         <div class="flex gap-3">
                             <a href="https://www.facebook.com/profile.php?id=61574499106160" target="_blank"
                                rel="noopener noreferrer" aria-label="Odwiedź nasz profil na Facebooku"
-                               class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#C38154] hover:-translate-y-1 transition-all">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                               class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#C38154] hover:-translate-y-1 transition-all">
+                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                           d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
                                           clip-rule="evenodd"/>
@@ -305,8 +305,8 @@ const steps = [
                             </a>
                             <a href="https://maps.app.goo.gl/9VgHfHr2W2wW14uB7" target="_blank"
                                rel="noopener noreferrer" aria-label="Sprawdź naszą lokalizację na mapie Google"
-                               class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#C38154] hover:-translate-y-1 transition-all">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                               class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#C38154] hover:-translate-y-1 transition-all">
+                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
                                           d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
                                           clip-rule="evenodd"/>
@@ -325,7 +325,7 @@ const steps = [
 
                 <div class="relative z-10">
                     <span class="inline-block p-4 rounded-full bg-white/80 backdrop-blur-sm text-[#C38154] mb-6 shadow-sm border border-white">
-                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                   d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>

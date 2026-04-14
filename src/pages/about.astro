@@ -1,16 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image, getImage } from 'astro:assets';
+import {Image} from 'astro:assets';
 import mainPortret from '../assets/mainPortret.jpg';
-
-const optimizedAboutImg = await getImage({
-    src: mainPortret,
-    format: 'avif',
-    width: 400
-});
 ---
 
-<Layout title="O mnie" preloadImage={optimizedAboutImg.src}>
+<Layout title="O mnie">
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-16 items-center relative z-10">
 

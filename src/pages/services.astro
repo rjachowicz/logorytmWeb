@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import {Image} from 'astro:assets';
 import img4 from '../assets/img4.png';
 import img6 from '../assets/img6.png';
 import img8 from '../assets/img8.jpg';
@@ -64,7 +64,12 @@ const services = [
                             <div class="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border border-white/50 group">
                                 <div class="absolute inset-0 bg-white/20 backdrop-blur-sm z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                                <Image src={service.image} alt={service.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                                <Image src={service.image} alt={service.title}
+                                       format="avif"
+                                       loading="lazy"
+                                       widths={[400, 800]}
+                                       sizes="(max-width: 768px) 400px, 800px"
+                                       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
 
                                 <div class="absolute inset-0 bg-gradient-to-tr from-[#884A39]/20 via-transparent to-transparent z-0"></div>
                             </div>
@@ -87,10 +92,11 @@ const services = [
                                     </p>
 
                                     <a href="/contact"
-                                       class="inline-flex items-center gap-2 font-bold text-[#884A39] hover:text-[#C38154] transition-colors group">
+                                       class="inline-flex items-center gap-2 font-bold text-[#884A39] hover:text-[#C38154] transition-colors group py-2">
                                         Zapytaj o terapię
-                                        <span class="w-8 h-8 rounded-full bg-white/80 shadow-sm flex items-center justify-center group-hover:bg-[#C38154] group-hover:text-white transition-all">
-                                        <svg aria-hidden="true" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path
+                                        <span class="w-10 h-10 rounded-full bg-white/80 shadow-sm flex items-center justify-center group-hover:bg-[#C38154] group-hover:text-white transition-all">
+                                        <svg aria-hidden="true" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor"><path
                                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                     </span>
