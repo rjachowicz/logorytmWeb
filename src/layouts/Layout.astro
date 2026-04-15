@@ -11,22 +11,27 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
     title: string;
+    description?: string;
     preloadImage?: string;
 }
 
-const {title, preloadImage} = Astro.props;
+const {
+    title,
+    description = "Logopeda Joanna Jachowicz. Profesjonalna terapia wad wymowy. Gabinet Logopedyczny Logorytm zaprasza pacjentów z okolic: Nowy Sącz, Łęka, Korzenna, Grybów.",
+    preloadImage
+} = Astro.props;
 ---
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy."/>
+    <meta name="description" content={description}/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="icon" type="image/png" href="/logorytm-logo.png"/>
 
     <meta name="generator" content={Astro.generator}/>
-    <title>{title} | Logorytm Gabinet Logopedyczny</title>
+    <title>{title} | Gabinet Logopedyczny | Logopeda - Joanna Jachowicz | Nowy Sącz | Łęka | Korzenna | Grybów </title>
 
     <link rel="preconnect" href="https://www.google.com"/>
 
@@ -35,11 +40,42 @@ const {title, preloadImage} = Astro.props;
 
     <meta property="og:type" content="website"/>
     <meta property="og:title" content={`${title} | Logorytm Gabinet Logopedyczny`}/>
-    <meta property="og:description" content="Gabinet Logopedyczny Logorytm - profesjonalna terapia wad wymowy."/>
+    <meta property="og:description" content={description}/>
     <meta property="og:image" content="/logorytm-logo.png"/>
     <meta property="og:url" content={Astro.url}/>
     <link rel="canonical" href={Astro.url}/>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "MedicalClinic",
+            "name": "Logorytm Gabinet Logopedyczny",
+            "alternateName": "Logopeda Joanna Jachowicz",
+            "description": "Profesjonalny gabinet logopedyczny oferujący diagnozę i terapię wad wymowy dla dzieci i dorosłych.",
+            "image": "https://www.logorytm.com/logorytm-logo-background.png",
+            "medicalSpecialty": "SpeechTherapy",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Łęka 184",
+                "addressLocality": "Korzenna",
+                "postalCode": "33-322",
+                "addressRegion": "małopolskie",
+                "addressCountry": "PL"
+            },
+            "telephone": "+48504759254",
+            "email": "kontaktlogorytm@gmail.com",
+            "priceRange": "$$",
+            "areaServed": [
+                "Nowy Sącz",
+                "Łęka",
+                "Korzenna",
+                "Grybów"
+            ],
+            "url": "https://www.logorytm.com"
+        }
+    </script>
 </head>
+
 <body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
 <div class="fixed inset-0 z-[-1] overflow-hidden bg-[#FDFBF7] pointer-events-none transform-gpu">
     <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C38154]/20 blur-[60px] md:blur-[120px] mix-blend-multiply md:animate-blob will-change-transform"></div>

@@ -65,7 +65,10 @@ const footerLinks = [
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
-                    <p>Łęka 184,<br/>33-322 Korzenna</p>
+                    <a href="https://www.google.com/maps/place/LOGORYTM+Gabinet+Logopedyczny+Joanna+Jachowicz/@49.6507981,20.7461969,13z/data=!4m6!3m5!1s0x473deff9ea8b45d9:0xaf9a67dc9a6dd3a0!8m2!3d49.6731642!4d20.7784393!16s%2Fg%2F11nbzlh9vv?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQxMi4wIKXMDSoASAFQAw%3D%3D"
+                       target="_blank" rel="noopener noreferrer" class="hover:text-[#C38154] transition-colors">
+                        Łęka 184,<br/>33-322 Korzenna
+                    </a>
                 </div>
             </div>
         </div>
@@ -84,15 +87,23 @@ const footerLinks = [
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 py-6 border-t border-[#884A39]/10 text-center flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-xs text-[#884A39]/70 font-medium">
-            <p>&copy; {year} LOGORYTM Gabinet Logopedyczny. Wszelkie prawa zastrzeżone.</p>
+    <div class="max-w-7xl mx-auto px-6 py-8 border-t border-[#884A39]/10 text-center flex flex-col xl:flex-row justify-between items-center gap-6">
+        <div class="flex flex-col md:flex-row items-center gap-4 text-xs text-[#884A39]/70 font-medium">
+            <p>© {year} LOGORYTM Gabinet Logopedyczny. Wszelkie prawa zastrzeżone.</p>
             <span class="hidden md:block w-1 h-1 rounded-full bg-[#884A39]/30"></span>
             <p>Wykorzystano grafiki z <a href="https://pl.freepik.com/" target="_blank" rel="noopener noreferrer"
                                          class="hover:text-[#C38154] transition-colors underline decoration-1 underline-offset-2 p-1">Freepik</a>
             </p>
         </div>
-        <a href="/privacy" class="text-xs text-[#884A39] font-medium hover:text-[#884A39]/90 transition-colors p-2">
+
+        <div class="flex flex-wrap justify-center items-center gap-2">
+            <span class="px-3 py-1.5 rounded-full bg-[#C38154]/10 text-[#C38154] font-bold text-[10px] tracking-widest uppercase border border-[#C38154]/20 shadow-sm">Nowy Sącz</span>
+            <span class="px-3 py-1.5 rounded-full bg-[#C38154]/10 text-[#C38154] font-bold text-[10px] tracking-widest uppercase border border-[#C38154]/20 shadow-sm">Korzenna</span>
+            <span class="px-3 py-1.5 rounded-full bg-[#C38154]/10 text-[#C38154] font-bold text-[10px] tracking-widest uppercase border border-[#C38154]/20 shadow-sm">Łęka</span>
+            <span class="px-3 py-1.5 rounded-full bg-[#C38154]/10 text-[#C38154] font-bold text-[10px] tracking-widest uppercase border border-[#C38154]/20 shadow-sm">Grybów</span>
+        </div>
+
+        <a href="/privacy" class="text-xs text-[#884A39] font-medium hover:text-[#884A39]/90 transition-colors p-2 shrink-0">
             Polityka prywatności
         </a>
     </div>

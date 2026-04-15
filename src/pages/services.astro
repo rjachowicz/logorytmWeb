@@ -12,6 +12,7 @@ const services = [
         subtitle: 'Szczegółowa ocena i rozpoznanie',
         description: 'Kompleksowe badanie narządów mowy, ocena artykulacji, oddychania oraz połykania. Podstawa do stworzenia indywidualnego i skutecznego planu terapii logopedycznej.',
         image: img4,
+        alt: 'Profesjonalna diagnoza logopedyczna w gabinecie Logorytm - Nowy Sącz, Łęka, Korzenna, Grybów',
         color: '#C38154',
         reverse: false
     },
@@ -20,6 +21,7 @@ const services = [
         subtitle: 'Indywidualne zajęcia usprawniające',
         description: 'Regularna praca nad korygowaniem wad wymowy i innych zaburzeń komunikacyjnych. Zajęcia prowadzone są w bezstresowej atmosferze, sprzyjającej przyswajaniu nowych umiejętności.',
         image: img6,
+        alt: 'Terapia logopedyczna dzieci - logopeda Joanna Jachowicz Nowy Sącz',
         color: '#884A39',
         reverse: true
     },
@@ -28,6 +30,7 @@ const services = [
         subtitle: 'Płynne czytanie i zrozumienie tekstu',
         description: 'Pomagam dzieciom stawiać pierwsze kroki w świecie liter poprzez radosną zabawę. Dzięki angażującym ćwiczeniom słuchowym i wzrokowym budujemy solidne fundamenty, aby czytanie stało się dla Twojej pociechy fascynującą przygodą, a nie trudnym obowiązkiem.',
         image: img8,
+        alt: 'Nauka czytania dla dzieci w gabinecie logopedycznym Logorytm koło Nowego Sącza',
         color: '#C38154',
         reverse: false
     },
@@ -36,20 +39,25 @@ const services = [
         subtitle: 'Innowacyjne wsparcie terapii',
         description: 'Bezpieczna metoda wspomagająca terapię logopedyczną. Wykorzystuje impulsy elektryczne do m.in pobudzenia lub rozluźnienia mięśni aparatu artykulacyjnego.',
         image: img9,
+        alt: 'Zabiegi elektrostymulacji w logopedii - innowacyjne wsparcie terapii wad wymowy',
         color: '#FFC26F',
         reverse: true
     }
 ];
 ---
 
-<Layout title="Oferta">
+<Layout
+        title="Oferta"
+        description="Oferta gabinetu logopedycznego Logorytm. Profesjonalna diagnoza, terapia logopedyczna, nauka czytania i elektrostymulacja. Logopeda Nowy Sącz, Łęka, Korzenna, Grybów."
+>
     <section class="relative pt-32 pb-20 overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10 hero-reveal-up">
             <h1 class="font-heading font-extrabold text-5xl md:text-6xl text-[#884A39] leading-tight mb-8">
                 Jak mogę <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C38154] to-[#FFC26F]">Ci pomóc?</span>
             </h1>
             <p class="text-lg md:text-xl text-[#884A39] leading-relaxed max-w-2xl mx-auto">
-                Poznaj pełen zakres usług gabinetu Logorytm. Oferuję profesjonalną diagnozę i terapię opartą na
+                Poznaj pełen zakres usług gabinetu Logorytm.
+                Oferuję profesjonalną diagnozę i terapię opartą na
                 nowoczesnych, sprawdzonych metodach.
             </p>
         </div>
@@ -64,7 +72,7 @@ const services = [
                             <div class="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border border-white/50 group">
                                 <div class="absolute inset-0 bg-white/20 backdrop-blur-sm z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                                <Image src={service.image} alt={service.title}
+                                <Image src={service.image} alt={service.alt}
                                        format="avif"
                                        loading="lazy"
                                        widths={[400, 800]}
@@ -92,6 +100,7 @@ const services = [
                                     </p>
 
                                     <a href="/contact"
+                                       title={`Umów się na usługę: ${service.title} - Logopeda Nowy Sącz`}
                                        class="inline-flex items-center gap-2 font-bold text-[#884A39] hover:text-[#C38154] transition-colors group py-2">
                                         Zapytaj o terapię
                                         <span class="w-10 h-10 rounded-full bg-white/90 shadow-sm flex items-center justify-center group-hover:bg-[#C38154] group-hover:text-white transition-all">
@@ -124,10 +133,12 @@ const services = [
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="/pricing"
+                           title="Cennik usług logopedycznych - Gabinet Logorytm"
                            class="bg-[#C38154] text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-[#884A39] transition-all duration-300 shadow-xl hover:-translate-y-1">
                             Zobacz cennik usług
                         </a>
                         <a href="/contact"
+                           title="Umów wizytę w gabinecie logopedycznym Logorytm - Nowy Sącz i okolice"
                            class="px-10 py-4 rounded-full text-lg font-bold text-[#884A39] bg-white border border-[#884A39]/10 hover:border-[#884A39] transition-colors shadow-sm">
                             Skontaktuj się ze mną
                         </a>
