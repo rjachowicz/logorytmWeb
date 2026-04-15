@@ -31,7 +31,7 @@ const {
     <link rel="icon" type="image/png" href="/logorytm-logo.png"/>
 
     <meta name="generator" content={Astro.generator}/>
-    <title>{title} | Gabinet Logopedyczny | Logopeda - Joanna Jachowicz | Nowy Sącz | Łęka | Korzenna | Grybów </title>
+    <title>{title} | Gabinet Logopedyczny | Logopeda Joanna Jachowicz | Nowy Sącz | Łęka | Korzenna | Grybów</title>
 
     <link rel="preconnect" href="https://www.google.com"/>
 
@@ -45,35 +45,38 @@ const {
     <meta property="og:url" content={Astro.url}/>
     <link rel="canonical" href={Astro.url}/>
 
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "MedicalClinic",
-            "name": "Logorytm Gabinet Logopedyczny",
-            "alternateName": "Logopeda Joanna Jachowicz",
-            "description": "Profesjonalny gabinet logopedyczny oferujący diagnozę i terapię wad wymowy dla dzieci i dorosłych.",
-            "image": "https://www.logorytm.com/logorytm-logo-background.png",
-            "medicalSpecialty": "SpeechTherapy",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Łęka 184",
-                "addressLocality": "Korzenna",
-                "postalCode": "33-322",
-                "addressRegion": "małopolskie",
-                "addressCountry": "PL"
-            },
-            "telephone": "+48504759254",
-            "email": "kontaktlogorytm@gmail.com",
-            "priceRange": "$$",
-            "areaServed": [
-                "Nowy Sącz",
-                "Łęka",
-                "Korzenna",
-                "Grybów"
-            ],
-            "url": "https://www.logorytm.com"
-        }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Logorytm Gabinet Logopedyczny",
+        "alternateName": "Logopeda Joanna Jachowicz",
+        "description": description,
+        "image": "https://www.logorytm.com/logorytm-logo-background.png",
+        "medicalSpecialty": "SpeechTherapy",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Łęka 184",
+            "addressLocality": "Korzenna",
+            "postalCode": "33-322",
+            "addressRegion": "małopolskie",
+            "addressCountry": "PL"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 49.69188,
+            "longitude": 20.81188
+        },
+        "telephone": "+48504759254",
+        "email": "kontaktlogorytm@gmail.com",
+        "priceRange": "$$",
+        "areaServed": [
+            "Nowy Sącz",
+            "Łęka",
+            "Korzenna",
+            "Grybów"
+        ],
+        "url": "https://www.logorytm.com"
+    })} />
 </head>
 
 <body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
