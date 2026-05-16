@@ -5,43 +5,67 @@ const pricingItems = [
     {
         title: 'Diagnoza logopedyczna',
         time: '45 min',
-        price: '150 zł',
+        price: '180 zł',
         description: 'Pierwsza wizyta obejmująca szczegółowy wywiad, badanie narządów mowy oraz ustalenie indywidualnego planu terapii.',
         color: '#C38154'
     },
     {
         title: 'Diagnoza + pisemna opinia',
         time: '45 min',
-        price: '180 zł',
+        price: '200 zł',
         description: 'Kompleksowa diagnoza logopedyczna połączona z przygotowaniem i wydaniem szczegółowej opinii w formie pisemnej.',
         color: '#884A39'
     },
     {
         title: 'Zajęcia logopedyczne',
         time: '30 min',
-        price: '100 zł',
+        price: '120 zł',
         description: 'Długość spotkania ustalamy indywidualnie, dbając o maksymalną efektywność i dobre samopoczucie najmłodszych pacjentów.',
         color: '#C38154'
     },
     {
         title: 'Zajęcia logopedyczne',
         time: '45 min',
-        price: '120 zł',
+        price: '140 zł',
         description: 'Długość spotkania ustalamy indywidualnie, dbając o maksymalną efektywność i dobre samopoczucie pacjenta.',
         color: '#FFC26F'
     },
     {
         title: 'Elektrostymulacja - sesja',
         time: 'do 30 min',
-        price: '60 zł',
+        price: '70 zł',
         description: 'Zabieg elektrostymulacji bez terapii logopedycznej. Dokładny czas trwania sesji jest uzależniony od stymulowanych obszarów.',
         color: '#884A39'
     },
     {
         title: 'Zaświadczenie na studia',
         time: '-',
-        price: '100 zł',
+        price: '120 zł',
         description: 'Badanie i wydanie oficjalnego zaświadczenia o braku przeciwwskazań do podjęcia wybranych kierunków studiów.',
+        color: '#FFC26F'
+    }
+];
+
+const packageItems = [
+    {
+        title: 'Pakiet 30 min',
+        sessions: '5 spotkań',
+        price: '550 zł',
+        description: 'Zestaw 5 spotkań logopedycznych trwających po 30 minut. Idealny do regularnej, krótszej pracy z młodszymi dziećmi.',
+        color: '#C38154'
+    },
+    {
+        title: 'Pakiet 45 min',
+        sessions: '5 spotkań',
+        price: '650 zł',
+        description: 'Zestaw 5 spotkań logopedycznych trwających po 45 minut. Pozwala na zintensyfikowaną pracę nad wymową pacjenta.',
+        color: '#884A39'
+    },
+    {
+        title: 'Pakiet Elektrostymulacja',
+        sessions: '5 zabiegów',
+        price: '300 zł',
+        description: 'Seria 5 zabiegów elektrostymulacji. Optymalna ilość zabiegów pozwalająca na osiągnięcie zauważalnych efektów terapeutycznych.',
         color: '#FFC26F'
     }
 ];
@@ -49,9 +73,8 @@ const pricingItems = [
 
 <Layout
         title="Cennik"
-        description="Cennik usług logopedycznych gabinetu Logorytm. Diagnoza, zajęcia logopedyczne, elektrostymulacja. Logopeda Joanna Jachowicz zaprasza z okolic: Nowy Sącz, Łęka, Korzenna, Grybów."
->
-    <section class="relative pt-32 pb-20 overflow-hidden">
+        description="Cennik usług logopedycznych gabinetu Logorytm. Diagnoza, zajęcia logopedyczne, elektrostymulacja. Logopeda Joanna Jachowicz zaprasza z okolic: Nowy Sącz, Łęka, Korzenna, Grybów.">
+    <section class="relative pt-32 pb-16 overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10 hero-reveal-up">
             <h1 class="font-heading font-extrabold text-5xl md:text-6xl leading-tight mb-8">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C38154] to-[#FFC26F]">Cennik</span>
@@ -63,7 +86,7 @@ const pricingItems = [
         </div>
     </section>
 
-    <section class="py-12 relative z-10">
+    <section class="py-10 relative z-10">
         <div class="max-w-5xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-8">
                 {pricingItems.map((item, index) => (
@@ -92,6 +115,49 @@ const pricingItems = [
                                 </div>
                                 <p class="text-[#884A39] leading-relaxed mt-auto">
                                     {item.description}
+                                </p>
+                            </div>
+                        </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 reveal-up">
+            <div class="text-center mb-16">
+                <span class="text-[#C38154] font-bold tracking-widest uppercase text-sm mb-3 block">Opcje długoterminowe</span>
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-[#884A39]">Pakiety terapeutyczne</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                {packageItems.map((pkg, index) => (
+                        <div class="bg-white/70 backdrop-blur-xl p-8 md:p-10 rounded-[2.5rem] border border-white shadow-xl reveal-up relative overflow-hidden group flex flex-col justify-between"
+                             style={`transition-delay: ${index * 150}ms`}>
+                            <div class="absolute -right-12 -top-12 w-36 h-36 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-700"
+                                 style={`background-color: ${pkg.color}`}></div>
+
+                            <div class="relative z-10 flex flex-col h-full justify-between">
+                                <div>
+                                    <h3 class="font-heading font-bold text-2xl text-[#884A39] mb-4 min-h-[0px] md:min-h-[4rem] flex items-start">{pkg.title}</h3>
+
+                                    <div class="inline-flex items-center gap-2 bg-white/90 rounded-full px-4 py-1.5 text-sm font-bold text-[#884A39]/80 border border-[#884A39]/10 shadow-sm mb-6">
+                                        <svg aria-hidden="true" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                             stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        {pkg.sessions}
+                                    </div>
+
+                                    <div class="mb-8">
+                                        <span class="block font-heading font-extrabold text-4xl"
+                                              style={`color: ${pkg.color}`}>{pkg.price}</span>
+                                    </div>
+                                </div>
+
+                                <p class="text-[#884A39] leading-relaxed border-t border-[#884A39]/10 pt-6 mt-4">
+                                    {pkg.description}
                                 </p>
                             </div>
                         </div>
