@@ -5,7 +5,11 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.logorytm.com',
 
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => page !== 'https://www.logorytm.com/privacy/',
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()],
