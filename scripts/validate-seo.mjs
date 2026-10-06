@@ -3,6 +3,11 @@ import { join } from 'node:path';
 
 const dist = join(process.cwd(), 'dist');
 const site = 'https://www.logorytm.com';
+const previewImage = `${site}/profile.png`;
+const previewImageId = `${site}/#profile-image`;
+const previewImageAlt = 'Logorytm — logopedia i terapia mowy, Joanna Jachowicz';
+const previewImageWidth = 2048;
+const previewImageHeight = 2048;
 const defaultRobots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
 const socialProfiles = [
   'https://www.facebook.com/profile.php?id=61574499106160',
@@ -113,8 +118,15 @@ for (const page of pages) {
   ];
   for (const [name, actual, expected] of metadataPairs) expectEqual(actual, expected, `${label} ${name}`);
   expectEqual(attribute(html, /<meta property="og:locale" content="([^"]+)"/, `${label} og:locale`), 'pl_PL', `${label} og:locale`);
-  expectEqual(attribute(html, /<meta property="og:image" content="([^"]+)"/, `${label} og:image`), `${site}/logorytm-logo.png`, `${label} og:image`);
-  expectEqual(attribute(html, /<meta name="twitter:image" content="([^"]+)"/, `${label} twitter:image`), `${site}/logorytm-logo.png`, `${label} twitter:image`);
+  expectEqual(count(html, /<meta property="og:image" /g), 1, `${label} og:image count`);
+  expectEqual(count(html, /<meta name="twitter:image" /g), 1, `${label} twitter:image count`);
+  expectEqual(attribute(html, /<meta property="og:image" content="([^"]+)"/, `${label} og:image`), previewImage, `${label} og:image`);
+  expectEqual(attribute(html, /<meta property="og:image:type" content="([^"]+)"/, `${label} og:image:type`), 'image/png', `${label} og:image:type`);
+  expectEqual(attribute(html, /<meta property="og:image:width" content="([^"]+)"/, `${label} og:image:width`), String(previewImageWidth), `${label} og:image:width`);
+  expectEqual(attribute(html, /<meta property="og:image:height" content="([^"]+)"/, `${label} og:image:height`), String(previewImageHeight), `${label} og:image:height`);
+  expectEqual(attribute(html, /<meta property="og:image:alt" content="([^"]+)"/, `${label} og:image:alt`), previewImageAlt, `${label} og:image:alt`);
+  expectEqual(attribute(html, /<meta name="twitter:image" content="([^"]+)"/, `${label} twitter:image`), previewImage, `${label} twitter:image`);
+  expectEqual(attribute(html, /<meta name="twitter:image:alt" content="([^"]+)"/, `${label} twitter:image:alt`), previewImageAlt, `${label} twitter:image:alt`);
 
   const robots = attribute(html, /<meta name="robots" content="([^"]+)"/, `${label} robots`);
   expectEqual(robots, page.private ? 'noindex,follow' : defaultRobots, `${label} robots`);
@@ -141,7 +153,7 @@ for (const page of pages) {
       expectEqual(business?.medicalSpecialty?.['@id'], 'https://schema.org/SpeechPathology', `${label} medicalSpecialty`);
       expectEqual(business?.telephone, '+48 504 759 254', `${label} telephone`);
       expectEqual(business?.email, 'kontaktlogorytm@gmail.com', `${label} email`);
-      expectEqual(business?.image, `${site}/logorytm-logo.png`, `${label} image`);
+      expectEqual(business?.image, previewImage, `${label} image`);
       expectEqual(business?.logo, `${site}/logorytm-logo.png`, `${label} logo`);
       expectEqual(business?.hasMap, mapProfileUrl, `${label} hasMap`);
       expectEqual(JSON.stringify(asSet(business?.sameAs ?? [])), JSON.stringify(asSet(socialProfiles)), `${label} sameAs`);
@@ -150,6 +162,23 @@ for (const page of pages) {
       expectEqual(business?.employee?.['@id'], `${site}/#person`, `${label} employee`);
       expectEqual(person?.jobTitle, 'Logopeda', `${label} person job title`);
       expectEqual(person?.worksFor?.['@id'], `${site}/#business`, `${label} person worksFor`);
+
+      const images = graph.filter((node) => node['@type'] === 'ImageObject');
+      expectEqual(images.length, 1, `${label} ImageObject count`);
+      const profileImage = ids.get(previewImageId);
+      expectEqual(profileImage?.url, previewImage, `${label} ImageObject url`);
+      expectEqual(profileImage?.contentUrl, previewImage, `${label} ImageObject contentUrl`);
+      expectEqual(profileImage?.width, previewImageWidth, `${label} ImageObject width`);
+      expectEqual(profileImage?.height, previewImageHeight, `${label} ImageObject height`);
+
+      const webPages = graph.filter((node) => node['@type'] === 'WebPage');
+      expectEqual(webPages.length, 1, `${label} WebPage count`);
+      const webPage = ids.get(`${expectedCanonical}#webpage`);
+      expectEqual(webPage?.url, expectedCanonical, `${label} WebPage url`);
+      expectEqual(webPage?.name, page.title, `${label} WebPage name`);
+      expectEqual(webPage?.inLanguage, 'pl-PL', `${label} WebPage language`);
+      expectEqual(webPage?.isPartOf?.['@id'], `${site}/#website`, `${label} WebPage website`);
+      expectEqual(webPage?.primaryImageOfPage?.['@id'], previewImageId, `${label} WebPage primary image`);
 
       const address = business?.address;
       expectEqual(address?.['@type'], 'PostalAddress', `${label} address type`);
@@ -181,9 +210,22 @@ for (const page of pages) {
     }
   }
 
-  for (const favicon of ['/favicon.ico', '/favicon-32x32.png', '/favicon-96x96.png', '/apple-touch-icon.png']) {
-    if (!html.includes(`href="${favicon}"`)) fail(`${label}: missing favicon reference ${favicon}`);
+  const iconLinks = [...html.matchAll(/<link rel="icon"([^>]*)>/g)].map((match) => match[1]);
+  expectEqual(iconLinks.length, 4, `${label} icon declaration count`);
+  const expectedIcons = [
+    ['image/png', '96x96', '/favicon-96x96.png'],
+    ['image/x-icon', '16x16 32x32 48x48 64x64', '/favicon-tab-v2.ico'],
+    ['image/png', '32x32', '/favicon-tab-v2-32.png'],
+    ['image/png', '64x64', '/favicon-tab-v2-64.png'],
+  ];
+  for (const [index, [type, sizes, href]] of expectedIcons.entries()) {
+    const icon = iconLinks[index] ?? '';
+    if (!icon.includes(`type="${type}"`) || !icon.includes(`sizes="${sizes}"`) || !icon.includes(`href="${href}"`)) {
+      fail(`${label}: icon declaration ${index + 1} is incorrect`);
+    }
   }
+  if (html.includes('href="/favicon.ico"') || html.includes('href="/favicon-32x32.png"')) fail(`${label}: contains obsolete icon declaration`);
+  if (!html.includes('rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"')) fail(`${label}: missing apple-touch-icon reference`);
 
   const localReferences = [
     ...html.matchAll(/(?:src|href)="(\/[^"?#]*)(?:[?#][^"]*)?"/g),
@@ -201,7 +243,7 @@ for (const page of pages) {
   if (/href="\/(?:about|services|pricing|contact|privacy)"/.test(html)) fail(`${label}: internal canonical route is linked without a trailing slash`);
 }
 
-for (const asset of ['favicon.ico', 'favicon-32x32.png', 'favicon-96x96.png', 'apple-touch-icon.png', 'logorytm-logo.png']) {
+for (const asset of ['favicon.ico', 'favicon-32x32.png', 'favicon-96x96.png', 'apple-touch-icon.png', 'logorytm-logo.png', 'profile.png', 'favicon-tab-v2-32.png', 'favicon-tab-v2-64.png', 'favicon-tab-v2.ico']) {
   if (!existsSync(join(dist, asset))) fail(`missing dist/${asset}`);
 }
 
