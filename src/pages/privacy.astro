@@ -133,9 +133,9 @@ import Layout from '../layouts/Layout.astro';
                         konta i urządzenia użytkownika.
                     </li>
                     <li>
-                        Na stronie kontaktowej osadzona jest mapa Google Maps. Wczytanie mapy powoduje połączenie
-                        z serwerami Google, które może wiązać się z przekazaniem m.in. adresu IP oraz informacji
-                        o urządzeniu, przeglądarce i aktywności użytkownika.
+                        Na stronie kontaktowej mapa Google Maps łączy się z serwerami Google dopiero po akceptacji
+                        i zbliżeniu do widocznego obszaru. Może to wiązać się z przekazaniem m.in. adresu IP oraz
+                        informacji o urządzeniu, przeglądarce i aktywności użytkownika.
                     </li>
                     <li>
                         Strona zawiera odnośniki do serwisów Facebook, Instagram, WhatsApp oraz Google Maps.
@@ -196,15 +196,15 @@ import Layout from '../layouts/Layout.astro';
                         profilowania użytkowników do celów marketingowych.
                     </li>
                     <li>
-                        Strona korzysta z pamięci lokalnej przeglądarki (Local Storage) w celu zapisania informacji
-                        o zamknięciu banera dotyczącego prywatności. Zapisywana jest wartość
+                        Strona korzysta z pamięci lokalnej przeglądarki (Local Storage) w celu zapisania wyboru
+                        dotyczącego wczytania Map Google. Zapisywana jest wartość
                         <code class="bg-white/70 px-1.5 py-0.5 rounded">cookiesAccepted</code>, która nie służy
                         do śledzenia aktywności użytkownika.
                     </li>
                     <li>
-                        Osadzona mapa Google Maps może korzystać z plików cookie lub podobnych technologii stosowanych
-                        przez Google. Zakres ich wykorzystania zależy m.in. od ustawień przeglądarki i od tego,
-                        czy użytkownik jest zalogowany na konto Google.
+                        Po akceptacji mapa Google Maps może korzystać z plików cookie lub podobnych technologii
+                        stosowanych przez Google. Zakres ich wykorzystania zależy m.in. od ustawień przeglądarki
+                        i od tego, czy użytkownik jest zalogowany na konto Google.
                     </li>
                     <li>
                         Czcionki używane na stronie są przechowywane lokalnie w plikach serwisu. Ich wyświetlenie

@@ -9,6 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "validate:seo": "npm run build && node scripts/validate-seo.mjs",
+    "test:visual": "node scripts/seo-regression.mjs",
     "astro": "astro"
   },
   "dependencies": {

@@ -22,8 +22,8 @@ const galleryImages = [
 ---
 
 <Layout
-        title="Kontakt – logopeda Łęka, Korzenna | Logorytm"
-        description="Skontaktuj się z Joanną Jachowicz, logopedą z gabinetu Logorytm w Łęce koło Korzennej, aby ustalić termin wizyty dla dziecka."
+        title="Kontakt i dojazd – logopeda Łęka, Korzenna | Logorytm"
+        description="Umów wizytę w gabinecie Logorytm Joanny Jachowicz: Łęka 184, 33-322 Korzenna. Telefon 504 759 254. Sprawdź kontakt i lokalizację gabinetu."
 >
     <section class="relative pt-32 pb-16 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 text-center relative z-10 hero-reveal-up">
@@ -137,7 +137,7 @@ const galleryImages = [
                     <div class="w-full h-full min-h-[450px] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/60 relative">
                         <iframe
                                 title="Mapa lokalizacji gabinetu Logorytm"
-                                src="https://maps.google.com/maps?q=%C5%81%C4%99ka%20184%2C%2033-322%20Korzenna&t=&z=13&ie=UTF8&iwloc=&output=embed&zoom=5"
+                                data-map-src="https://maps.google.com/maps?q=%C5%81%C4%99ka%20184%2C%2033-322%20Korzenna&t=&z=13&ie=UTF8&iwloc=&output=embed&zoom=5"
                                 width="100%"
                                 height="100%"
                                 style="border:0;"
@@ -175,6 +175,43 @@ const galleryImages = [
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const mapFrame = document.querySelector<HTMLIFrameElement>('iframe[data-map-src]');
+        if (mapFrame) {
+            let mapIsNear = false;
+
+            const hasMapsConsent = () => {
+                if (document.documentElement.dataset.mapsConsent === 'granted') return true;
+                try {
+                    return localStorage.getItem('cookiesAccepted') === 'true';
+                } catch {
+                    return false;
+                }
+            };
+
+            const loadMapWhenReady = () => {
+                const mapSrc = mapFrame.dataset.mapSrc;
+                if (mapIsNear && hasMapsConsent() && mapSrc && !mapFrame.src) {
+                    mapFrame.src = mapSrc;
+                }
+            };
+
+            if ('IntersectionObserver' in window) {
+                const mapObserver = new IntersectionObserver((entries, observer) => {
+                    if (entries.some(entry => entry.isIntersecting)) {
+                        mapIsNear = true;
+                        loadMapWhenReady();
+                        observer.disconnect();
+                    }
+                }, {rootMargin: '300px 0px', threshold: 0});
+                mapObserver.observe(mapFrame);
+            } else {
+                mapIsNear = true;
+            }
+
+            window.addEventListener('maps-consent-granted', loadMapWhenReady);
+            loadMapWhenReady();
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');

@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import '@fontsource-variable/inter';
-import '@fontsource-variable/montserrat';
 import '@fontsource/poppins/500.css';
 import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
@@ -43,6 +41,18 @@ const ogImage = new URL('/logorytm-logo.png', site).href;
 const websiteId = `${siteUrl}#website`;
 const businessId = `${siteUrl}#business`;
 const personId = `${siteUrl}#person`;
+const socialProfiles = [
+    'https://www.facebook.com/profile.php?id=61574499106160',
+    'https://www.instagram.com/logorytm.joannajachowicz'
+];
+const mapProfileUrl = 'https://www.google.com/maps/place/LOGORYTM+Gabinet+Logopedyczny+Joanna+Jachowicz/@49.6507981,20.7461969,13z/data=!4m6!3m5!1s0x473deff9ea8b45d9:0xaf9a67dc9a6dd3a0!8m2!3d49.6731642!4d20.7784393!16s%2Fg%2F11nbzlh9vv?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQxMi4wIKXMDSoASAFQAw%3D%3D';
+const breadcrumbNames: Record<string, string> = {
+    '/about/': 'O mnie',
+    '/services/': 'Oferta',
+    '/pricing/': 'Cennik',
+    '/contact/': 'Kontakt',
+    '/privacy/': 'Polityka prywatności'
+};
 const breadcrumb = canonicalUrl.pathname === '/'
     ? undefined
     : {
@@ -50,7 +60,12 @@ const breadcrumb = canonicalUrl.pathname === '/'
         "@id": `${canonical}#breadcrumb`,
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": siteUrl },
-            { "@type": "ListItem", "position": 2, "name": title, "item": canonical }
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": breadcrumbNames[canonicalUrl.pathname] ?? title,
+                "item": canonical
+            }
         ]
     };
 const structuredData = {
@@ -69,7 +84,9 @@ const structuredData = {
             "@id": businessId,
             "name": "Logorytm Gabinet Logopedyczny",
             "url": siteUrl,
-            "medicalSpecialty": "SpeechTherapy",
+            "image": ogImage,
+            "logo": ogImage,
+            "medicalSpecialty": { "@id": "https://schema.org/SpeechPathology" },
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Łęka 184",
@@ -80,6 +97,13 @@ const structuredData = {
             },
             "telephone": "+48 504 759 254",
             "email": "kontaktlogorytm@gmail.com",
+            "sameAs": socialProfiles,
+            "hasMap": mapProfileUrl,
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 49.6731642,
+                "longitude": 20.7784393
+            },
             "areaServed": [
                 { "@type": "Place", "name": "Łęka" },
                 { "@type": "Place", "name": "Korzenna" },
@@ -98,6 +122,7 @@ const structuredData = {
         ...(breadcrumb ? [breadcrumb] : [])
     ]
 };
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
 
 <html lang="pl">
@@ -115,8 +140,6 @@ const structuredData = {
 
     <meta name="generator" content={Astro.generator}/>
     <title>{title}</title>
-
-    <link rel="preconnect" href="https://www.google.com"/>
 
     {preloadImage &&
             <link rel="preload" as="image" href={preloadImage} fetchpriority="high"/>}
@@ -136,7 +159,7 @@ const structuredData = {
     <meta name="twitter:description" content={description}/>
     <meta name="twitter:image" content={ogImage}/>
 
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script type="application/ld+json" set:html={structuredDataJson} />
 </head>
 
 <body class="font-sans text-[#884A39] antialiased relative selection:bg-[#C38154] selection:text-white">
@@ -168,17 +191,16 @@ const structuredData = {
                 </svg>
             </div>
             <h3 class="font-heading font-extrabold text-2xl text-[#884A39] mb-4">Dbamy o Twoją prywatność</h3>
-            <p class="text-[#884A39] font-medium leading-relaxed mb-8">
-                Nasza strona wykorzystuje pliki cookies, aby zapewnić Ci najlepsze doświadczenia, w tym do poprawnego
-                działania Map Google i wyświetlania pięknych czcionek. Dalsze korzystanie z serwisu oznacza zgodę na ich
-                użycie.
+            <p class="text-[#884A39] font-medium leading-relaxed mb-8" data-nosnippet>
+                Zapisujemy w przeglądarce wybór dotyczący Map Google. Po akceptacji mapa na stronie kontaktowej może
+                połączyć się z usługami Google. Informacje o przetwarzaniu danych znajdziesz w polityce prywatności.
             </p>
             <div class="flex flex-col gap-3">
                 <button id="accept-cookies"
                         class="w-full bg-[#C38154] text-white px-8 py-4 rounded-full text-base font-bold hover:bg-[#884A39] transition-all shadow-lg hover:-translate-y-1">
                     Rozumiem i akceptuję
                 </button>
-                <a href="/privacy"
+                <a href="/privacy/"
                    class="text-sm font-bold text-[#884A39] hover:text-[#C38154] transition-colors uppercase tracking-widest p-2">
                     Polityka Prywatności
                 </a>
@@ -256,14 +278,33 @@ const structuredData = {
         const overlay = document.getElementById('cookie-overlay');
         const acceptButton = document.getElementById('accept-cookies');
 
-        if (!localStorage.getItem('cookiesAccepted')) {
+        let cookiesAccepted = false;
+        try {
+            cookiesAccepted = localStorage.getItem('cookiesAccepted') === 'true';
+        } catch {
+            cookiesAccepted = false;
+        }
+
+        const grantMapsConsent = () => {
+            document.documentElement.dataset.mapsConsent = 'granted';
+            window.dispatchEvent(new Event('maps-consent-granted'));
+        };
+
+        if (cookiesAccepted) {
+            grantMapsConsent();
+        } else {
             setTimeout(() => {
                 overlay?.classList.add('active');
             }, 800);
         }
 
         acceptButton?.addEventListener('click', () => {
-            localStorage.setItem('cookiesAccepted', 'true');
+            try {
+                localStorage.setItem('cookiesAccepted', 'true');
+            } catch {
+                // Zgoda pozostaje aktywna w pamięci bieżącej strony.
+            }
+            grantMapsConsent();
             overlay?.classList.remove('active');
         });
 
@@ -273,17 +314,20 @@ const structuredData = {
             threshold: 0.1
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+        const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
 
-        document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => {
-            observer.observe(el);
-        });
+            revealElements.forEach(el => observer.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add('active'));
+        }
     });
 </script>

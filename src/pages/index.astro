@@ -10,7 +10,9 @@ import img3 from '../assets/img3.png';
 const services = [
     {
         title: 'Innowacyjne techniki terapeutyczne',
-        description: 'Łączę najnowszą wiedzę logopedyczną z innowacyjnymi narzędziami wspomagającymi, takimi jak elektrostymulacja czy kinesiotaping. Dzięki temu korekcja wad wymowy i praca nad płynnością stają się nie tylko skuteczniejsze, ale i bardziej fascynujące dla pacjenta.',
+        description: 'Łączę wiedzę logopedyczną z metodami wspomagającymi terapię dziecka, takimi jak elektrostymulacja i kinesiotaping. Dobór narzędzi zależy od jego potrzeb i celu zajęć, a regularna praca odbywa się w atmosferze zaufania, zabawy i współpracy z rodzicami.',
+        href: '/services/#elektrostymulacja',
+        ariaLabel: 'Więcej szczegółów o elektrostymulacji jako wsparciu terapii',
         image: img1,
         color: '#C38154',
         span: 'col-span-1 md:col-span-2 row-span-2',
@@ -19,6 +21,8 @@ const services = [
     {
         title: 'Nauka czytania',
         description: 'Wsparcie w nabywaniu umiejętności czytania ze zrozumieniem.',
+        href: '/services/#nauka-czytania',
+        ariaLabel: 'Więcej szczegółów o nauce czytania',
         image: img2,
         color: '#FFC26F',
         span: 'col-span-1',
@@ -27,6 +31,8 @@ const services = [
     {
         title: 'Terapia Logopedyczna',
         description: 'Przyjazne zajęcia wspierające rozwój mowy',
+        href: '/services/#terapia',
+        ariaLabel: 'Więcej szczegółów o terapii logopedycznej',
         image: img3,
         color: '#F9E0BB',
         span: 'col-span-1',
@@ -42,8 +48,8 @@ const steps = [
 ---
 
 <Layout
-        title="Logopeda Korzenna i okolice | Gabinet Logorytm"
-        description="Gabinet Logorytm Joanny Jachowicz oferuje diagnozę i terapię logopedyczną dzieci w Łęce, Korzennej i pobliskich miejscowościach."
+        title="Logopeda Korzenna – okolice Nowego Sącza i Grybowa | Logorytm"
+        description="Diagnoza i terapia logopedyczna dzieci w gabinecie Logorytm, Łęka 184 koło Korzennej. Zapraszam rodziny z Nowego Sącza, Grybowa i okolic."
 >
     <section class="relative min-h-[95vh] flex items-center overflow-hidden pt-20">
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center py-12">
@@ -67,12 +73,12 @@ const steps = [
                 </h1>
 
                 <p class="text-lg md:text-xl text-[#884A39] font-medium leading-relaxed max-w-lg mb-12">
-                    Profesjonalna diagnoza i innowacyjna terapia logopedyczna. Wspieram rozwój komunikacyjny dzieci,
-                    przełamując bariery z uśmiechem i empatią.
+                    Diagnoza oraz terapia logopedyczna dzieci. Gabinet Logorytm znajduje się w Łęce 184, koło
+                    Korzennej. Zapraszam także rodziny z Nowego Sącza i Grybowa.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="/contact"
+                    <a href="/contact/"
                        class="group relative inline-flex items-center justify-center bg-[#884A39] text-white px-8 py-4 rounded-full text-base font-bold overflow-hidden transition-all hover:shadow-[0_10px_40px_rgba(136,74,57,0.3)] hover:-translate-y-1">
                         <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></span>
                         <span class="relative flex items-center gap-2">Umów wizytę <svg
@@ -82,7 +88,7 @@ const steps = [
                                 stroke-linejoin="round" stroke-width="2"
                                 d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
                     </a>
-                    <a href="/about"
+                    <a href="/about/"
                        class="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold text-[#884A39] bg-white/60 backdrop-blur-md border border-white/50 hover:bg-white transition-all hover:-translate-y-1 shadow-sm">
                         Poznaj gabinet
                     </a>
@@ -126,7 +132,7 @@ const steps = [
                 <div class="relative w-full aspect-4/5 md:aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/80 z-10">
                     <Image
                             src={mainPortret}
-                            alt="Terapia logopedyczna"
+                            alt="Joanna Jachowicz — logopeda w gabinecie Logorytm"
                             loading="eager"
                             fetchpriority="high"
                             format="avif"
@@ -168,7 +174,7 @@ const steps = [
                     <h2 class="font-heading font-extrabold text-4xl md:text-5xl text-[#884A39] leading-tight">W czym
                         mogę <br/> Ci pomóc?</h2>
                 </div>
-                <a href="/services"
+                <a href="/services/"
                    class="mt-6 md:mt-0 group inline-flex items-center gap-3 text-[#884A39] font-bold text-lg hover:text-[#C38154] transition-colors">
                     Zobacz pełną ofertę
                     <span class="w-12 h-12 rounded-full bg-white/70 backdrop-blur-md shadow-sm border border-white/50 flex items-center justify-center group-hover:bg-[#C38154] group-hover:text-white transition-all">
@@ -199,7 +205,8 @@ const steps = [
                                     <p class="text-white/80 leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 max-w-md">
                                         {service.description}
                                     </p>
-                                    <a href="/services"
+                                    <a href={service.href}
+                                       aria-label={service.ariaLabel}
                                        class="inline-flex items-center gap-2 text-white font-semibold hover:underline decoration-2 underline-offset-4"
                                        style={`text-decoration-color: ${service.color}`}>
                                         Więcej szczegółów
@@ -259,7 +266,7 @@ const steps = [
                         <div class="relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#884A39]">
                             <Image
                                     src={mainPortret2}
-                                    alt="Joanna Jachowicz - logopeda"
+                                    alt="Joanna Jachowicz — logopeda w gabinecie Logorytm"
                                     loading="lazy"
                                     format="avif"
                                     widths={[400, 800, 1200]}
@@ -283,9 +290,9 @@ const steps = [
                             rówieśnikami oraz bliskimi.
                         </p>
                         <p>
-                            Mój gabinet <em>Logorytm</em> to miejsce stworzone z myślą o emocjach i potrzebach dziecka.
-                            Wierzę, że najpiękniejsze postępy rodzą się tam, gdzie nauka staje się przygodą, a terapia
-                            opiera się na zabawie, wzajemnym zaufaniu i pełnym poczuciu bezpieczeństwa.
+                            Mój gabinet <em>Logorytm</em> znajduje się w Łęce, w gminie Korzenna. Zapraszam rodziny z
+                            Grybowa, Nowego Sącza i okolicznych miejscowości. Wspieram rozwój mowy dzieci poprzez
+                            indywidualnie dobraną zabawę, regularne ćwiczenia i współpracę z rodzicami.
                         </p>
                         <p>
                             W pracy stawiam na rzetelną wiedzę i partnerską współpracę z rodzicami, bo to właśnie
@@ -294,7 +301,7 @@ const steps = [
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                        <a href="/about"
+                        <a href="/about/"
                            class="inline-flex items-center gap-3 text-[#FFC26F] font-bold text-lg hover:text-white transition-colors group">
                             Więcej o moim doświadczeniu
                             <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none"
@@ -360,7 +367,7 @@ const steps = [
                         rodzinie.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/contact"
+                        <a href="/contact/"
                            class="bg-[#C38154] text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-[#884A39] transition-all duration-300 shadow-xl hover:-translate-y-1">
                             Umów się na spotkanie
                         </a>
